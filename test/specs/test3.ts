@@ -11,5 +11,5 @@ describe('webdriver.io page', () => {
         
         
     })
-        expect($('.added-manually').isExisting());
+        expect($('.added-manually')).toBeDisabled;
 })
