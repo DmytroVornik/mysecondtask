@@ -1,9 +1,10 @@
 errorShots/*
 node_modules
-# Reports section
-allure-report
-allure-results
 built
 .DS_Store
 package-lock.json
 .vscode
+# Reports section
+allure-report
+allure-results
+
