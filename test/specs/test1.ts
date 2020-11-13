@@ -1,8 +1,8 @@
 describe('adding and removing', () => {
     beforeAll((done) => {
         browser.url(`https://the-internet.herokuapp.com/add_remove_elements/`);
-        //expect($('.button').isClickable);
-        //expect($('.button').isExisting);
+        expect($('.button').isClickable);
+        expect($('.button').isExisting);
     });
 
     it('adding first button delete', () => {
@@ -25,6 +25,7 @@ describe('adding and removing', () => {
         expect($$('.added-manually').length).toEqual(2);
 
         $('button').click();
+    
 
         expect($$('.added-manually')[2].isExisting);
         expect($$('.added-manually').length).toEqual(3);
