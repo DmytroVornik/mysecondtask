@@ -1,7 +1,7 @@
 errorShots/*
 node_modules
 built
-.DS_Store
+*.DS_Store
 package-lock.json
 .vscode
 # Reports section
