@@ -1,13 +1,14 @@
 describe('adding and removing', () => {
-    beforeAll( () => {
+    beforeAll(() => {
         browser.url(`https://the-internet.herokuapp.com/add_remove_elements/`);
+        
     });
 
-    beforeEach(()=> {
+    beforeEach(() => {
+        //expect($('.button')).toBeExisting();
+        expect($('button*=Add Element')).toBeExisting();
+        expect($('button*=Add Element')).toBeClickable();
 
-       expect( $('button*=Add Element')).toBeExisting();
-       expect( $('button*=Add Element')).toBeClickable();    
-        
     });
 
     it('adding first button delete', () => {
@@ -30,7 +31,7 @@ describe('adding and removing', () => {
         expect($$('.added-manually').length).toEqual(2);
 
         $('button').click();
-    
+
 
         expect($$('.added-manually')[2].isExisting);
         expect($$('.added-manually').length).toEqual(3);
@@ -81,7 +82,7 @@ describe('adding and removing', () => {
     it(('deleting all buttons delete'), () => {
         expect($$('.added-manually').length).toEqual(2);
 
-        $$('.added-manually')[1].click();
+        $$('.added-manually')[0].click();
         $$('.added-manually')[0].click();
 
         expect($$('.added-manually').length).toEqual(0);
