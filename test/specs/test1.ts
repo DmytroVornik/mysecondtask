@@ -5,8 +5,8 @@ describe('adding and removing', () => {
 
     beforeEach(()=> {
 
-        expect($('.button').isExisting).toEqual(true);
-        expect($('.button').isClickable).toEqual(true);
+       expect( $('button*=Add Element')).toBeExisting();
+       expect( $('button*=Add Element')).toBeClickable();    
         
     });
 
