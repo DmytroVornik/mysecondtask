@@ -1,8 +1,13 @@
 describe('adding and removing', () => {
-    beforeAll((done) => {
+    beforeAll( () => {
         browser.url(`https://the-internet.herokuapp.com/add_remove_elements/`);
-        expect($('.button').isClickable);
-        expect($('.button').isExisting);
+    });
+
+    beforeEach(()=> {
+
+        expect($('.button').isExisting).toEqual(true);
+        expect($('.button').isClickable).toEqual(true);
+        
     });
 
     it('adding first button delete', () => {
