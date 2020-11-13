@@ -1,91 +1,80 @@
+
 describe('adding and removing', () => {
+    const addButton = 'button*=Add Element';
+    const deleteButton = '.added-manually';
     beforeAll(() => {
         browser.url(`https://the-internet.herokuapp.com/add_remove_elements/`);
-        
     });
 
     beforeEach(() => {
-        //expect($('.button')).toBeExisting();
-        expect($('button*=Add Element')).toBeExisting();
-        expect($('button*=Add Element')).toBeClickable();
-
+        expect($(addButton)).toBeClickable();
     });
 
     it('adding first button delete', () => {
-        $('button').click();
-        expect($$('.added-manually')[0].isExisting);
+        
+        $(addButton).click();
+        expect($$(deleteButton)).toBeElementsArrayOfSize(1);
 
     });
 
     it('adding second button delete', () => {
-        expect($$('.added-manually')[0].isExisting);
 
-        $('button').click();
+        $(addButton).click();
 
-        expect($$('.added-manually')[1].isExisting);
-        expect($$('.added-manually').length).toEqual(2);
+        expect($$(deleteButton)).toBeElementsArrayOfSize(2);
+
     });
 
 
     it('adding third button delete', () => {
-        expect($$('.added-manually').length).toEqual(2);
 
-        $('button').click();
+        $(addButton).click();
 
+        expect($$(deleteButton)).toBeElementsArrayOfSize(3);
 
-        expect($$('.added-manually')[2].isExisting);
-        expect($$('.added-manually').length).toEqual(3);
     });
 
 
     it('adding fourth and fifth button delete', () => {
-        expect($$('.added-manually').length).toEqual(3);
 
-        $('button').click();
-        $('button').click();
+        $(addButton).click();
+        $(addButton).click();
 
-        expect($$('.added-manually').length).toEqual(5);
+        expect($$(deleteButton)).toBeElementsArrayOfSize(5);
 
     });
 
     it(('deleting middle button delete'), () => {
-        expect($$('.added-manually')[2].isExisting);
-        expect($$('.added-manually').length).toEqual(5);
 
-        $$('.added-manually')[2].click();
+        $$(deleteButton)[2].click();
 
-        expect($$('.added-manually').length).toEqual(4);
+        expect($$(deleteButton)).toBeElementsArrayOfSize(4);
 
     });
 
 
     it(('deleting first button delete'), () => {
-        expect($$('.added-manually')[0].isExisting);
-        expect($$('.added-manually').length).toEqual(4);
 
-        $$('.added-manually')[0].click();
+        $$(deleteButton)[0].click();
 
-        expect($$('.added-manually').length).toEqual(3);
+        expect($$(deleteButton)).toBeElementsArrayOfSize(3);
 
     });
 
     it(('deleting last button delete'), () => {
-        expect($$('.added-manually')[2].isExisting);
-        expect($$('.added-manually').length).toEqual(3);
 
-        $$('.added-manually')[2].click();
+        $$(deleteButton)[2].click();
 
-        expect($$('.added-manually').length).toEqual(2);
+        expect($$(deleteButton)).toBeElementsArrayOfSize(2);
 
     });
 
     it(('deleting all buttons delete'), () => {
-        expect($$('.added-manually').length).toEqual(2);
 
-        $$('.added-manually')[0].click();
-        $$('.added-manually')[0].click();
+        $$(deleteButton)[1].click();
+        $$(deleteButton)[0].click();
 
-        expect($$('.added-manually').length).toEqual(0);
+        expect($$(deleteButton)).toBeElementsArrayOfSize(0);
 
     });
 
