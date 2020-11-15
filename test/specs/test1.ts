@@ -29,7 +29,6 @@ describe('adding and removing', () => {
     it('adding third button delete', () => {
 
         $(addButton).click();
-
         expect($$(deleteButton)).toBeElementsArrayOfSize(3);
 
     });
