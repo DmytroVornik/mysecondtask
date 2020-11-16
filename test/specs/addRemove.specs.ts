@@ -44,7 +44,7 @@ describe('adding and removing', () => {
         expect(AddRemovePage.deleteButton).toBeClickable();
         expect(AddRemovePage.deleteButton).toBeElementsArrayOfSize(1);
 
-        AddRemovePage.deleteButton.click();
+        AddRemovePage.firstDeleteButton.click();
 
         expect(AddRemovePage.deleteButton).toBeElementsArrayOfSize(0);
 
