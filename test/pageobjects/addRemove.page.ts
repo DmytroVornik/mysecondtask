@@ -6,7 +6,7 @@ class AddRemovePage extends Page {
      * define elements
      */
     get addButton () {return $('button*=Add Element')};
-    get deleteButton () { return $$('.added-manually')};
+    get deleteButtons () { return $$('.added-manually')};
     get firstDeleteButton () {return $('#elements button:first-child')};
     get lastDeleteButton () {return $('#elements button:last-child')};
 
