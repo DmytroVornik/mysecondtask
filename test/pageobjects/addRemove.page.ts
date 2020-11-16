@@ -17,13 +17,7 @@ class AddRemovePage extends Page {
         super.open('https://the-internet.herokuapp.com/add_remove_elements/')
     }
 
-    clickAddButton () {
-        this.addButton.click()
-    }
-
-    clickDeleteButton () {
-        this.firstDeleteButton.click();
-    }
+   
 
     addDeleteButton(b) {
         for (let i = 0; i < b; i++)
