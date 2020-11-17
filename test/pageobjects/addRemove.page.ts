@@ -17,19 +17,24 @@ class AddRemovePage extends Page {
         super.open('https://the-internet.herokuapp.com/add_remove_elements/')
     }
 
-    listButtonsToBeClickable(listOfDeleteButtons) {
+    listDeleteButtonsToBeClickable(listOfDeleteButtons) {
         for (let i = 0; i < listOfDeleteButtons.length; i++)
-            expect(listOfDeleteButtons[i]).toBeClickable();
+            expect(this.listOfDeleteButtons[i]).toBeClickable();
     }
 
-    listButtonsNotToBeClickable(listOfDeleteButtons) {
+    listDeleteButtonsNotToBeClickable(listOfDeleteButtons) {
         for (let i = 0; i < listOfDeleteButtons.length; i++)
-            expect(listOfDeleteButtons[i]).not.toBeClickable();
+            expect(this.listOfDeleteButtons[i]).not.toBeClickable();
     }
 
     addDeleteButton(value) {
         for (let i = 0; i < value; i++)
             this.addButton.click();
+    }
+
+    deleteDeleteButton(value) {
+        for (let i = 0; i < value; i++)
+            this.firstDeleteButton.click();
     }
 }
 export default new AddRemovePage()
