@@ -9,82 +9,84 @@ describe('adding and removing', () => {
 
     //zero state - press delete
     it('zero state - press Delete button ', () => {
-       expect( AddRemovePage.addButton).toBeClickable();
-       expect( AddRemovePage.deleteButtons).not.toBeClickable();
+        expect(AddRemovePage.addButton).toBeClickable();
+        AddRemovePage.listButtonsNotToBeClickable(AddRemovePage.listOfDeleteButtons);
 
     });
 
     //zero state - press add
     it('zero state - press Add button ', () => {
-        expect(AddRemovePage.addButton).not.toBeClickable();
-        expect(AddRemovePage.deleteButtons).not.toBeClickable();
+        expect(AddRemovePage.addButton).toBeClickable();
+        AddRemovePage.listButtonsToBeClickable;
 
         AddRemovePage.addButton.click();
-        expect(AddRemovePage.deleteButtons).toBeElementsArrayOfSize(1);
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(1);
 
 
     });
 
-
+    //first state - press add
     it('first state - press Add button ', () => {
         expect(AddRemovePage.addButton).toBeClickable();
         AddRemovePage.addButton.click();
 
-        expect(AddRemovePage.deleteButtons).toBeClickable();
-        expect(AddRemovePage.deleteButtons).toBeElementsArrayOfSize(1);
+        AddRemovePage.listButtonsToBeClickable(AddRemovePage.listOfDeleteButtons);
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(1);
 
         AddRemovePage.addButton.click();
-        expect(AddRemovePage.deleteButtons).toBeElementsArrayOfSize(2);
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(2);
     });
 
-
+    //first state - press delete
     it('first state - press Delete button ', () => {
 
         AddRemovePage.addButton.click();
-        expect(AddRemovePage.deleteButtons).toBeClickable();
-        expect(AddRemovePage.deleteButtons).toBeElementsArrayOfSize(1);
+        AddRemovePage.listButtonsToBeClickable(AddRemovePage.listOfDeleteButtons);;
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(1);
 
         AddRemovePage.firstDeleteButton.click();
 
-        expect(AddRemovePage.deleteButtons).toBeElementsArrayOfSize(0);
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(0);
 
     });
-
+    //deleting middle Delete button 
     it(('deleting middle button delete'), () => {
 
         AddRemovePage.addDeleteButton(3);
-        expect(AddRemovePage.deleteButtons).toBeElementsArrayOfSize({ gte: 3 });
-        expect(AddRemovePage.deleteButtons).toBeClickable();
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize({ gte: 3 });
+        AddRemovePage.listButtonsToBeClickable(AddRemovePage.listOfDeleteButtons);
 
-        let len = Math.ceil(((AddRemovePage.deleteButtons).length) / 2 - 1);
-        AddRemovePage.deleteButtons[len].click();
-        expect( AddRemovePage.deleteButtons).toBeElementsArrayOfSize(2);
+        let len = Math.ceil(((AddRemovePage.listOfDeleteButtons).length) / 2 - 1);
+        AddRemovePage.listOfDeleteButtons[len].click();
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(2);
 
     });
 
+    //deleting first Delete button 
     it(('deleting first button delete'), () => {
 
         AddRemovePage.addDeleteButton(3);
-        expect(AddRemovePage.deleteButtons).toBeElementsArrayOfSize({ gte: 2 });
-        expect(AddRemovePage.deleteButtons).toBeClickable();
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize({ gte: 2 });
+        AddRemovePage.listButtonsToBeClickable(AddRemovePage.listOfDeleteButtons);
 
         AddRemovePage.firstDeleteButton.click();
-        expect(AddRemovePage.deleteButtons).toBeElementsArrayOfSize(2);
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(2);
 
 
     });
 
+    //deleting last Delete button
     it(('deleting last button delete'), () => {
 
         AddRemovePage.addDeleteButton(3);
-        expect(AddRemovePage.deleteButtons).toBeElementsArrayOfSize({ gte: 2 });
-        expect(AddRemovePage.deleteButtons).toBeClickable();
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize({ gte: 2 });
+        AddRemovePage.listButtonsToBeClickable(AddRemovePage.listOfDeleteButtons);
 
         AddRemovePage.lastDeleteButton.click();
-        expect(AddRemovePage.deleteButtons).toBeElementsArrayOfSize(2);
+        expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(2);
 
     });
 
-    
+
 
 });
