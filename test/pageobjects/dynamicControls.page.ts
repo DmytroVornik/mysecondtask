@@ -5,8 +5,10 @@ class DynamicControlsPage extends Page {
     /**
      * define elements
      */
-    get subheader() { return $('.subheader') };
-    get removeButton():WebdriverIO.Element { return $('button*=Remove') };
+    //get removeButton() {return $('form#checkbox-example.button')};
+    get removeButton() {return $('button*=Remove')};
+    get enableButton() { return $('button*=Enable')};
+    
     
 
     /**
