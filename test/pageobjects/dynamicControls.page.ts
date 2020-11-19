@@ -23,38 +23,38 @@ class DynamicControlsPage extends Page {
         super.open('dynamic_controls')
     }
 
-    clickRemoveButton(){
+    clickRemoveButton(removeButton, loadingImage){
 
-        this.removeButton.waitForEnabled();
-        this.removeButton.click();
-        this.loadingImage.waitForExist();
+        removeButton.waitForEnabled();
+        removeButton.click();
+        loadingImage.waitForExist();
         return this;
     }
 
 
-    clickAddButton(){
+    clickAddButton(addButton){
         
-        this.addButton.waitForEnabled();
-        this.addButton.click();
+        addButton.waitForEnabled();
+        addButton.click();
         return this;
     }
 
-    setValue( value){
-        this.inputField.waitForEnabled();
-        this.inputField.setValue(value);
+    setValue(inputField, value){
+        inputField.waitForEnabled();
+        inputField.setValue(value);
         return this;
     }
 
-    clickEnableButton(){
-        this.enableButton.waitForEnabled();
-        this.enableButton.click();
-        this.loadingImage.waitForExist();
+    clickEnableButton(enableButton, loadingImage ){
+        enableButton.waitForEnabled();
+        enableButton.click();
+        loadingImage.waitForExist();
         return this;
     }
 
-    clickDisableButton(){
-        this.disableButton.click();
-        this.loadingImage.waitForExist();
+    clickDisableButton(disableButton, loadingImage){
+        disableButton.click();
+        loadingImage.waitForExist();
         return this;
     }
 
