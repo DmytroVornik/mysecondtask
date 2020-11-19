@@ -7,22 +7,27 @@ describe('dynamic controls', () => {
 
     });
 
-     
-    it('dynamic controls', () => {
+    
+
+    it('first form', () => {
         
-        DynamicControlsPage.removeButton.click();
-        DynamicControlsPage.removeButton
-        
+        DynamicControlsPage.clickRemoveButton()
+                           .clickAddButton();
+                           
+                           
 
     });
 
-    it('should detect when element is clickable', () => {
-        
-        DynamicControlsPage.removeButton.waitForClickable({ timeout: 3000 });
-    });
 
-    it('should detect when element is no longer clickable', () => {
-        DynamicControlsPage.removeButton.waitForClickable({ reverse: true });
+
+    it('second form', () => {
+
+        DynamicControlsPage.clickEnableButton()
+                           .setValue('dark')
+                           .clickDisableButton();
+
+        
+        
     });
 
 
