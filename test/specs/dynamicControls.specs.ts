@@ -11,8 +11,8 @@ describe('dynamic controls', () => {
 
     it('first form', () => {
         
-        DynamicControlsPage.clickRemoveButton(DynamicControlsPage.removeButton,DynamicControlsPage.loadingImage)
-                           .clickAddButton(DynamicControlsPage.addButton);
+        DynamicControlsPage.clickRemoveButton()
+                           .clickAddButton();
                            
                            
 
@@ -22,9 +22,9 @@ describe('dynamic controls', () => {
 
     it('second form', () => {
 
-        DynamicControlsPage.clickEnableButton(DynamicControlsPage.enableButton, DynamicControlsPage.loadingImage)
-                           .setValue(DynamicControlsPage.inputField,'dark')
-                           .clickDisableButton(DynamicControlsPage.disableButton, DynamicControlsPage.loadingImage);
+        DynamicControlsPage.clickEnableButton()
+                           .setValue('lol')
+                           .clickDisableButton();
 
         
         
