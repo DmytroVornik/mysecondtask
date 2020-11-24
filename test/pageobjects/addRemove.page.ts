@@ -9,6 +9,7 @@ class AddRemovePage extends Page {
     get listOfDeleteButtons() { return $$('.added-manually') };
     get firstDeleteButton() { return $('#elements button:first-child') };
     get lastDeleteButton() { return $('#elements button:last-child') };
+    get footer() {return $('#page-footer') };
 
     /**
      * define or overwrite page methods
