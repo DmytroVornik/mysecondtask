@@ -14,23 +14,16 @@ describe('dynamic controls', () => {
     it('first form', () => {
         
         DynamicControlsPage.clickRemoveButton()
-                           .clickAddButton();
-                           
-                           
-
+                           .displayOfProgressBar()
+                           .clickAddButton()
+                           .displayOfProgressBar();
     });
-
-
 
     it('second form', () => {
-
         DynamicControlsPage.clickEnableButton()
+                           .displayOfProgressBar()
                            .setValue('lol')
-                           .clickDisableButton();
-
-        
-        
+                           .clickDisableButton()
+                           .displayOfProgressBar(); 
     });
-
-
 });
