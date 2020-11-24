@@ -16,7 +16,7 @@ class AddRemovePage extends Page {
         return this;
     }
 
-    clickAddButton(numberOfClicks = 1) {
+    clickAddButton(numberOfClicks: number = 1) {
         for (let i = 0; i < numberOfClicks; i++) {
             this.addButton.click();
         }
