@@ -15,6 +15,7 @@ class DynamicControlsPage extends Page {
     get loadingImage() { return $('div#loading')};
     
     
+    
 
     /**
      * define or overwrite page methods

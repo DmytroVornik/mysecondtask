@@ -7,7 +7,9 @@ describe('dynamic controls', () => {
 
     });
 
-    
+    it('existence of footer ', () => {
+        expect(DynamicControlsPage.footer).toHaveTextContaining('Powered by');
+    });
 
     it('first form', () => {
         
