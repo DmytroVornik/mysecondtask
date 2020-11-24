@@ -33,12 +33,13 @@ describe('dynamic controls', () => {
                            .displayOfProgressBar();
         expect(DynamicControlsPage.inputField).toBeEnabled();
         expect(DynamicControlsPage.disableButton).toBeClickable();
-        expect(DynamicControlsPage.messageInput).toHaveTextContaining("It's enabled!")
+        expect(DynamicControlsPage.messageInput).toHaveTextContaining("It's enabled!");
         DynamicControlsPage.setValue(text);
         DynamicControlsPage.clickDisableButton()
                            .displayOfProgressBar();
         expect(DynamicControlsPage.inputField).toBeDisabled();
         expect(DynamicControlsPage.enableButton).toBeExisting();
         expect(DynamicControlsPage.inputField).toHaveValue(text);
+        expect(DynamicControlsPage.messageInput).toHaveTextContaining("It's disabled!");
     });
 });
