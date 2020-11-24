@@ -12,7 +12,6 @@ describe('dynamic controls', () => {
     });
 
     it('first form', () => {
-        
         DynamicControlsPage.clickRemoveButton()
                            .displayOfProgressBar()
                            .clickAddButton()
