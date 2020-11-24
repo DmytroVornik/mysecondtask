@@ -19,9 +19,10 @@ class DynamicControlsPage extends Page {
     /**
      * define or overwrite page methods
      */
-    open() {
-        super.open('dynamic_controls')
+    getPath(){
+        return 'dynamic_controls';
     }
+
 
     clickRemoveButton(){
 
