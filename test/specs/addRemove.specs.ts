@@ -8,6 +8,8 @@ describe('adding and removing', () => {
     });
     it('existence of footer ', () => {
         expect(AddRemovePage.footer).toHaveTextContaining('Powered by');
+        expect(AddRemovePage.footerLink).toHaveTextContaining('Elemental Selenium');
+        expect(AddRemovePage.footerLink).toHaveAttrContaining('href','http://elementalselenium.com/');
     });
 
     //zero state - press delete
