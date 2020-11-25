@@ -45,7 +45,7 @@ class DynamicControlsPage extends Page {
         return this;
     }
 
-    displayOfProgressBarState() {
+    waitingProgressBar() {
         this.loadingImage.waitForDisplayed();
         this.loadingImage.waitForDisplayed({ reverse: true });
         return this;

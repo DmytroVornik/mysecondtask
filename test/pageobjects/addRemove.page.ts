@@ -11,8 +11,13 @@ class AddRemovePage extends Page {
         return 'add_remove_elements/';
     }
 
-    clickDeleteButton(valueOfButton = this.firstDeleteButton) {
-        valueOfButton.click();
+    clickLastDeleteButton(){
+        this.lastDeleteButton.click();
+        return this;
+    }
+
+    clickDeleteButton(index = 0,) {
+        this.listOfDeleteButtons[index].click();
         return this;
     }
 

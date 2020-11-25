@@ -16,31 +16,31 @@ describe('dynamic controls', () => {
 
     it('first form', () => {
         expect(DynamicControlsPage.removeButton).toBeClickable();
-        expect(DynamicControlsPage.checkbox).toBeExisting();
+        expect(DynamicControlsPage.checkbox).toBeDisplayed();
         DynamicControlsPage.clickRemoveButton()
-                           .displayOfProgressBarState()
-        expect(DynamicControlsPage.checkbox).not.toBeExisting();
+                           .waitingProgressBar()
+        expect(DynamicControlsPage.checkbox).not.toBeDisplayed();
         expect(DynamicControlsPage.addButton).toBeClickable();
         expect(DynamicControlsPage.messageCheckbox).toHaveTextContaining("It's gone!");
         DynamicControlsPage.clickAddButton()
-                           .displayOfProgressBarState();
+                           .waitingProgressBar();
         expect(DynamicControlsPage.messageCheckbox).toHaveTextContaining("It's back!");
-        expect(DynamicControlsPage.checkbox).toBeExisting();
+        expect(DynamicControlsPage.checkbox).toBeDisplayed();
     });
 
     it('second form', () => {
         expect(DynamicControlsPage.inputField).toBeDisabled();
         expect(DynamicControlsPage.enableButton).toBeClickable();
         DynamicControlsPage.clickEnableButton()
-                           .displayOfProgressBarState();
+                           .waitingProgressBar();
         expect(DynamicControlsPage.inputField).toBeEnabled();
         expect(DynamicControlsPage.disableButton).toBeClickable();
         expect(DynamicControlsPage.messageInput).toHaveTextContaining("It's enabled!");
         DynamicControlsPage.setValue(text);
         DynamicControlsPage.clickDisableButton()
-                           .displayOfProgressBarState();
+                           .waitingProgressBar();
         expect(DynamicControlsPage.inputField).toBeDisabled();
-        expect(DynamicControlsPage.enableButton).toBeExisting();
+        expect(DynamicControlsPage.enableButton).toBeDisplayed();
         expect(DynamicControlsPage.inputField).toHaveValue(text);
         expect(DynamicControlsPage.messageInput).toHaveTextContaining("It's disabled!");
     });

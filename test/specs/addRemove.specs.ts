@@ -82,7 +82,7 @@ describe('adding and removing', () => {
             expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(3);
             verifyThatDeleteButtonAreClickable(AddRemovePage.listOfDeleteButtons);
             let middle = Math.floor(AddRemovePage.listOfDeleteButtons.length / 2);
-            AddRemovePage.clickDeleteButton(AddRemovePage.listOfDeleteButtons[middle]);
+            AddRemovePage.clickDeleteButton(middle);
             expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(2);
             expect(AddRemovePage.addButton).toBeClickable();
             verifyThatDeleteButtonAreClickable(AddRemovePage.listOfDeleteButtons);
@@ -106,7 +106,7 @@ describe('adding and removing', () => {
             AddRemovePage.clickAddButton(3);
             expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(3);
             verifyThatDeleteButtonAreClickable(AddRemovePage.listOfDeleteButtons);
-            AddRemovePage.clickDeleteButton(AddRemovePage.lastDeleteButton);
+            AddRemovePage.clickLastDeleteButton();
             expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(2);
             expect(AddRemovePage.addButton).toBeClickable();
             verifyThatDeleteButtonAreClickable(AddRemovePage.listOfDeleteButtons);
