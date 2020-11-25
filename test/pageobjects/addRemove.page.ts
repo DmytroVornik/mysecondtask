@@ -16,7 +16,7 @@ class AddRemovePage extends Page {
         return this;
     }
 
-    clickDeleteButton(index = 0,) {
+    clickDeleteButton(index: number = 0) {
         this.listOfDeleteButtons[index].click();
         return this;
     }
