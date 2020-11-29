@@ -1,4 +1,5 @@
 import AddRemovePage from '../pageobjects/addRemove.page'
+import allureReporter from '@wdio/allure-reporter'
 
 describe('adding and removing', () => {
     //initial state for each test
@@ -11,14 +12,16 @@ describe('adding and removing', () => {
         expect(AddRemovePage.footerLink).toHaveTextContaining('Elemental Selenium');
         expect(AddRemovePage.footerLink).toHaveAttrContaining('href','http://elementalselenium.com/');
     });
-
+    
     //zero state - press delete
+    
     it('zero state - press Delete button ', () => {
         expect(AddRemovePage.addButton).toBeClickable();
         expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(0);
     });
 
     //zero state - press add
+    
     it('zero state - press Add button ', () => {
         expect(AddRemovePage.addButton).toBeClickable();
         expect(AddRemovePage.listOfDeleteButtons).toBeElementsArrayOfSize(0);

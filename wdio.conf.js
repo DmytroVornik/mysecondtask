@@ -1,5 +1,7 @@
 exports.config = {
     //
+
+
     // ====================
     // Runner Configuration
     // ====================
@@ -46,7 +48,7 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-    
+
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
@@ -107,7 +109,7 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['chromedriver'],
-    
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
@@ -128,10 +130,13 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
+    reporters: [['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+    }]],
 
 
-    
     //
     // Options to be passed to Jasmine.
     jasmineNodeOpts: {
@@ -143,11 +148,11 @@ exports.config = {
         // The Jasmine framework allows interception of each assertion in order to log the state of the application
         // or website depending on the result. For example, it is pretty handy to take a screenshot every time
         // an assertion fails.
-        expectationResultHandler: function(passed, assertion) {
+        expectationResultHandler: function (passed, assertion) {
             // do something
         }
     },
-    
+
     //
     // =====
     // Hooks
@@ -224,7 +229,7 @@ exports.config = {
     /**
      * Function to be executed after a test (in Mocha/Jasmine).
      */
-    afterTest: function(test, context, { error, result, duration, passed, retries }) {
+    afterTest: function (test, context, { error, result, duration, passed, retries }) {
         if (!passed) {
             browser.takeScreenshot();
         }
@@ -263,6 +268,7 @@ exports.config = {
      */
     // afterSession: function (config, capabilities, specs) {
     // },
+
     /**
      * Gets executed after all workers got shut down and the process is about to exit. An error
      * thrown in the onComplete hook will result in the test run failing.
@@ -270,9 +276,7 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
-     */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+     *  
     /**
     * Gets executed when a refresh happens.
     * @param {String} oldSessionId session ID of the old session
