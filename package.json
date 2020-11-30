@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build" : "react-scripts build",
     "test": "npx wdio wdio.conf.js",
     "report": "allure generate --clean && allure open",
     "gitPush": "git add -A && git commit -m'1' && git push"

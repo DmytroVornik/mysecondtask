@@ -1,10 +1,6 @@
 import Page, { step } from './page'
-import allureReporter from '@wdio/allure-reporter'
-
 
 class AddRemovePage extends Page {
-
-    
 
     get addButton() { return $('button*=Add Element') };
     get listOfDeleteButtons() { return $$('.added-manually') };

@@ -1,4 +1,4 @@
-import allureReporter from "@wdio/allure-reporter";
+import AllureReporter from "@wdio/allure-reporter";
 
 export default abstract class Page {
 
@@ -34,8 +34,8 @@ export function step(description?: string) {
   function createStep(name: string, stepFunc) {
     return function (this, ...args: any[]) {
       let stepName = name.replace(/(\{(\d+)\})/gi, (m, s, index) => args[index]);
-      let status: allureReporter.StepStatus = 'passed', result;
-      allureReporter.startStep(stepName);
+      let status: AllureReporter.StepStatus = 'passed', result;
+      AllureReporter.startStep(stepName);
       try {
         result = stepFunc.apply(this, args);
       }
@@ -44,7 +44,7 @@ export function step(description?: string) {
         throw error;
       }
       finally {
-        allureReporter.endStep(status);
+        AllureReporter.endStep(status);
       }
       return result;
     };
