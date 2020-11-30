@@ -15,7 +15,7 @@ class DynamicControlsPage extends Page {
 
     @step()
     getPath() {
-        allureReporter.addEnvironment('Browser', 'chrome');
+        allureReporter.addEnvironment('Browser', 'Opera');
         allureReporter.addStep("go to start page");
         return 'dynamic_controls';
         
