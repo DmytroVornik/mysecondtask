@@ -10,7 +10,6 @@ describe('Drag and Drop', () => {
         expect(DragAndDrop.columnA).toBeDisplayed();
         expect(DragAndDrop.columnB).toBeDisplayed();
 
-        DragAndDrop.columnB.moveTo();
         DragAndDrop.columnA.dragAndDrop(DragAndDrop.columnB, {duration:1000});
 
         expect(DragAndDrop.headerA.getText()).toEqual('B');
