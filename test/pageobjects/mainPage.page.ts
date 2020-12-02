@@ -19,8 +19,8 @@ class ListProduct {
     get productPrice() { return this.root.$('.product-card__price') }
     get productCardTitle() { return this.root.$('.product-card__title') }
     get ratingCard() { return this.root.$('div.product-card__description > div:nth-child(2)') }
-    get textDescription() { return this.root.$('#imageItemDescription14') }
-    get textTags() { return this.root.$('#imageItemTags14') }
+    get textDescription() { return this.root.$('id*=imageItemDescription') }
+    get textTags() { return this.root.$('id*=imageItemTags') }
     constructor(private selector: string) { }
 
     getTitle() {
@@ -73,7 +73,6 @@ class Categories {
     get img() { return this.root.$('img') }
     get link() { return this.root.$('a') }
     constructor(private selector: string) { }
-
 }
 
 class Navbar {
@@ -83,9 +82,6 @@ class Navbar {
     get buttonLogIn() { return this.root.$('a#aLogin') }
     get buttonV() { return this.root.$('a.navbar-brand') }
     constructor(private selector: string) { }
-
-
-
 }
 export default new MainPage()
 
