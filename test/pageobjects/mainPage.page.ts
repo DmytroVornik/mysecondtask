@@ -37,9 +37,12 @@ class ListProduct {
         let second = this.textSecondDescription.getText();
         let description = first + second;
         return description;
+    }
+    getRating() {
 
     }
 }
+
 class Search {
     private get root() { return $(this.selector) }
     get inputSearchImage() { return this.root.$('input#tbTerm') }
@@ -72,6 +75,7 @@ class Categories {
     constructor(private selector: string) { }
 
 }
+
 class Navbar {
     private get root() { return $(this.selector) }
     get buttonHome() { return this.root.$('a#aHome') }
@@ -83,7 +87,6 @@ class Navbar {
 
 
 }
-
 export default new MainPage()
 
 
