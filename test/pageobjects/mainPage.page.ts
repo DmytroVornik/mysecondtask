@@ -19,8 +19,8 @@ class ListProduct {
     get productPrice() { return this.root.$('.product-card__price') }
     get productCardTitle() { return this.root.$('.product-card__title') }
     get ratingCard() { return this.root.$('div.product-card__description > div:nth-child(2)') }
-    get textFirstDescription() { return this.root.$('div.product-card__description > div:nth-child(3)') }
-    get textSecondDescription() { return this.root.$('div.product-card__description > div:nth-child(4)') }
+    get textDescription() { return this.root.$('#imageItemDescription14') }
+    get textTags() { return this.root.$('#imageItemTags14') }
     constructor(private selector: string) { }
 
     getTitle() {
@@ -32,11 +32,11 @@ class ListProduct {
     getPrice() {
         return this.productPrice.getText();
     }
-    getDescription() {
-        let first = this.textFirstDescription.getText();
-        let second = this.textSecondDescription.getText();
-        let description = first + second;
-        return description;
+    getTextDescription() {
+        return this.textDescription.getText();
+    }
+    getTextTags() {
+        return this.textTags.getText();
     }
     getRating() {
 
