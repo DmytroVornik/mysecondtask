@@ -4,7 +4,6 @@ class MainPage extends Page {
     getPath(): string {
         return '/';
     }
-    card1 = ListProducts.initCards();
     firstCard = new ListProducts('.products-list')
     search = new Search('#divSearch')
     navbar = new Navbar('.container')
