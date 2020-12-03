@@ -7,6 +7,6 @@ describe('Login Page', () => {
 
     it('Login ', () => {
         LoginPage.login();
-        expect(LoginPage.loggedName.getText()).toEqual('qq')
+        expect(LoginPage.loggedName.getText()).toEqual('qq');
     });
 });

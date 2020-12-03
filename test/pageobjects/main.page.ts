@@ -65,11 +65,11 @@ class Search {
         options.priceFrom === undefined || this.priceFrom.setValue(options.priceFrom);
         options.priceTo === undefined || this.priceTo.setValue(options.priceTo);
     }
-    pressSearchButton() {
+    pressSearch() {
         this.buttonSearch.click();
         return this;
     }
-    pressResetButton() {
+    pressReset() {
         this.buttonReset.click();
         return this;
     }
@@ -77,16 +77,12 @@ class Search {
 
 class Categories {
     private get root() { return $(this.selector) }
-    get listImg() { return this.root.$$('img') }
-    get listLink() { return this.root.$$('a') }
     constructor(private selector: string) { }
 
     selectCategory(nameCategory: string) {
         $(`=${nameCategory}`).click();
-
     }
 }
-
 
 class Navbar {
     private get root() { return $(this.selector) }
@@ -100,9 +96,9 @@ class Navbar {
 type Options = {
     searchImage?: string,
     ratingFrom?: number,
-    ratingTo?: any,
-    priceFrom?: any,
-    priceTo?: any,
+    ratingTo?: number,
+    priceFrom?: number,
+    priceTo?: number
 
 }
 export default new MainPage()
