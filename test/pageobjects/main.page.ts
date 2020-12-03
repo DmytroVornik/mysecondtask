@@ -99,8 +99,5 @@ type Options = {
     ratingTo?: number,
     priceFrom?: number,
     priceTo?: number
-
 }
 export default new MainPage()
-
-
