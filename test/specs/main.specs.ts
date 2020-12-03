@@ -1,6 +1,7 @@
+import LoginPage from '../pageobjects/login.page';
 import MainPage from '../pageobjects/main.page'
 
-describe('Button Details is existing in #imageItem14', () => {
+describe('main page', () => {
     beforeEach(() => {
         MainPage.open();
     });

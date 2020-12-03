@@ -6,7 +6,8 @@ class MainPage extends Page {
     }
     search = new Search('.row');
     categories = new Categories('#divCategoryNames')
-    menu = new Menu('#navbar');
+    menu = new Menu('.container');
+
     get cards() {
         return $$('.product-card')
             .map(value => new CardProduct('#' + value.getAttribute('id')));
@@ -89,10 +90,11 @@ class Categories {
 
 class Menu {
     private get root() { return $(this.selector) }
-    get buttonHome() { return this.root.$('a#aHome') }
-    get buttonSignUp() { return this.root.$('a#aRegistration') }
-    get buttonLogIn() { return this.root.$('a#aLogin') }
+    get buttonHome() { return this.root.$('#aHome') }
+    get buttonSignUp() { return this.root.$('#aRegistration') }
+    get buttonLogIn() { return this.root.$('#aLogin') }
     get buttonV() { return this.root.$('a.navbar-brand') }
+    get loggedName() { return $('#sploggedInName') }
     constructor(private selector: string) { }
 }
 
