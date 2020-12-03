@@ -7,8 +7,5 @@ describe('main page', () => {
     });
 
     it('Existing ', () => {
-        MainPage.menu.buttonV.click();
-        MainPage.menu.buttonLogIn.click();
-        expect(browser.getUrl().toString).toEqual('http://localhost:5054/login')
     });
 });
