@@ -7,8 +7,9 @@ describe('Button Details is existing in #imageItem14', () => {
 
     });
     it('Existing ', () => {
-        let textTitle = MainPage.firstCard.getTitle();
-        expect(textTitle).toEqual('Features of being in service in Arktika.');
-        expect(MainPage.firstCard.getPrice()).toEqual('1.46')
+        
+        MainPage.list.selectCategory('Legend')
+        waits(5000);
+
     });
 });
