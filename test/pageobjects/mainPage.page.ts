@@ -4,10 +4,12 @@ class MainPage extends Page {
     getPath(): string {
         return '/';
     }
-    firstCard = new ListProducts('.products-list')
+    cardList = new ListProducts('.products-list')
     search = new Search('#divSearch')
     navbar = new Navbar('.container')
     list = new Categories('#divCategoryNames')
+    
+    
 
 }
 
@@ -23,9 +25,15 @@ class ListProducts {
     get ratingCardLastChild() { return this.root.$('div.product-card__description > div:nth-child(2) > img:nth-child(5)') }
     get textDescription() { return this.root.$('id*=imageItemDescription') }
     get textTags() { return this.root.$('id*=imageItemTags') }
-    get listProducts() { return this.root.$$('.product-card') }
-    constructor(private selector: string) { }
+    get listProducts() { return  this.root.$$('.product-card') }
+    constructor(private selector: any) { }
 
+    getCard(i){
+
+        let card = new ListProducts(this.listProducts[i-1]);
+        return card;
+        
+    }
 
     getTitle() {
         return this.productCardTitle.getText();

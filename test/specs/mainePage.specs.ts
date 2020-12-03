@@ -8,7 +8,7 @@ describe('Button Details is existing in #imageItem14', () => {
     });
     it('Existing ', () => {
         
-        MainPage.list.selectCategory('Legend')
+        console.log(MainPage.cardList.getCard(3).getTitle());
         waits(5000);
 
     });
