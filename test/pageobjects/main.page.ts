@@ -4,6 +4,9 @@ class MainPage extends Page {
     getPath(): string {
         return '/';
     }
+    search = new Search('.row');
+    categories = new Categories('#divCategoryNames')
+    menu = new Menu('#navbar');
     get cards() {
         return $$('.product-card')
             .map(value => new CardProduct('#' + value.getAttribute('id')));
@@ -84,7 +87,7 @@ class Categories {
     }
 }
 
-class Navbar {
+class Menu {
     private get root() { return $(this.selector) }
     get buttonHome() { return this.root.$('a#aHome') }
     get buttonSignUp() { return this.root.$('a#aRegistration') }
