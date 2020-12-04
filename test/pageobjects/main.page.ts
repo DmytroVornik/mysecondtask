@@ -43,6 +43,7 @@ class CardProduct {
     }
     open() {
         this.buttonDetails.click();
+        return this;
     }
     getRating() {
         let lastStar = this.ratingLastChild.getAttribute('alt');
@@ -68,6 +69,7 @@ class Search {
         options.ratingTo === undefined || this.ratingTo.setValue(options.ratingTo);
         options.priceFrom === undefined || this.priceFrom.setValue(options.priceFrom);
         options.priceTo === undefined || this.priceTo.setValue(options.priceTo);
+        return this;
     }
     pressSearch() {
         this.buttonSearch.click();
@@ -95,6 +97,9 @@ class Menu {
     get buttonLogIn() { return this.root.$('#aLogin') }
     get buttonV() { return this.root.$('a.navbar-brand') }
     get loggedName() { return $('#sploggedInName') }
+    get logOut() { return $('#aLogoutTop') }
+    get itemsInCart() { return $('#spCartTopMsg') }
+    get imgItemsInCart() { return $('#imgCartTop') }
     constructor(private selector: string) { }
 }
 

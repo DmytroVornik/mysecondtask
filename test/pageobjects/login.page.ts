@@ -1,4 +1,5 @@
 import Page from "./page"
+import MainPage from '../pageobjects/main.page';
 
 class LoginPage extends Page {
     getPath() {
@@ -13,5 +14,5 @@ class LoginPage extends Page {
         this.password.setValue(password);
         this.buttonSubmit.click();
     }
-}   
+}
 export default new LoginPage()
