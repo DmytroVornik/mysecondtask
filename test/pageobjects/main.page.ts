@@ -7,7 +7,6 @@ class MainPage extends Page {
     search = new Search('.row');
     categories = new Categories('#divCategoryNames')
     menu = new Menu('.container');
-
     get cards() {
         return $$('.product-card')
             .map(value => new CardProduct('#' + value.getAttribute('id')));
@@ -96,10 +95,16 @@ class Menu {
     get buttonSignUp() { return this.root.$('#aRegistration') }
     get buttonLogIn() { return this.root.$('#aLogin') }
     get buttonV() { return this.root.$('a.navbar-brand') }
-    get loggedName() { return $('#sploggedInName') }
-    get logOut() { return $('#aLogoutTop') }
-    get itemsInCart() { return $('#spCartTopMsg') }
-    get imgItemsInCart() { return $('#imgCartTop') }
+    get loggedName() { return this.root.$('#sploggedInName') }
+    get logOut() { return this.root.$('#aLogoutTop') }
+    get itemsInCart() { return this.root.$('#spCartTopMsg') }
+    get buttonItemsInCart() { return this.root.$('#imgCartTop') }
+    get addresses() { return this.root.$('#aAddresses') }
+    get addAddresses() { return this.root.$('#aAddAddress') }
+    get cards() { return this.root.$('#aCards') }
+    get addCard() { return this.root.$('#aAddCard') }
+    get editProfile() { return this.root.$('#aEditProfile') }
+
     constructor(private selector: string) { }
 }
 
