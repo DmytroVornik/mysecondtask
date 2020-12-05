@@ -12,16 +12,18 @@
 //     });
 
 //     it('Add card to cart with logged user', () => {
+//         expect(MainPage.menu.buttonLogIn).toBeDisplayed();
 //         MainPage.menu.buttonLogIn.click();
 //         LoginPage.login();
+//         MainPage.menu.loggedName.waitForDisplayed({timeout:10000});
 //         expect(MainPage.menu.loggedName).toBeDisplayed();
-//         MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-//             .pressSearch();
 //         MainPage.cards[0].open();
 //         DetailsPage.addToCart();
-//         browser.pause(3000);
 //         MainPage.menu.buttonItemsInCart.click();
-//         CartPage.card.linkImg.click();
-//         browser.pause(3000);
+//         CartPage.cards[0].linkImg.click();
+//         MainPage.menu.buttonItemsInCart.click();
+//         CartPage.empty();
+//         MainPage.menu.logOut.click();
+
 //     });
 // });

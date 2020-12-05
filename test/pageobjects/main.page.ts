@@ -1,4 +1,5 @@
-import Page from "./page"
+import DetailsPage from "./details.page";
+import Page, { step } from "./page"
 
 class MainPage extends Page {
     getPath(): string {
@@ -24,26 +25,32 @@ class CardProduct {
     get description() { return this.root.$('id*=imageItemDescription') }
     get tags() { return this.root.$('id*=imageItemTags') }
     constructor(private selector: string) { }
-
+    @step()
     getTitle() {
         return this.title.getText();
     }
+    @step()
     getAuthor() {
         return this.author.getText();
     }
+    @step()
     getPrice() {
         return this.price.getText();
     }
+    @step()
     getDescription() {
         return this.description.getText();
     }
+    @step()
     getTags() {
         return this.tags.getText();
     }
+    @step('Open card details')
     open() {
         this.buttonDetails.click();
         return this;
     }
+    @step()
     getRating() {
         let lastStar = this.ratingLastChild.getAttribute('alt');
         let rating = 5 - Number(lastStar);
@@ -62,6 +69,7 @@ class Search {
     get buttonReset() { return this.root.$('#btnResetSearchCriteria') }
     constructor(private selector: string) { }
 
+    @step()
     setValuesForSearching(options: Options) {
         options.searchImage === undefined || this.searchImage.setValue(options.searchImage);
         options.ratingFrom === undefined || this.ratingFrom.setValue(options.ratingFrom);
@@ -70,10 +78,12 @@ class Search {
         options.priceTo === undefined || this.priceTo.setValue(options.priceTo);
         return this;
     }
+    @step()
     pressSearch() {
         this.buttonSearch.click();
         return this;
     }
+    @step()
     pressReset() {
         this.buttonReset.click();
         return this;
@@ -84,6 +94,7 @@ class Categories {
     private get root() { return $(this.selector) }
     constructor(private selector: string) { }
 
+    @step()
     selectCategory(nameCategory: string) {
         $(`=${nameCategory}`).click();
     }
@@ -91,19 +102,67 @@ class Categories {
 
 class Menu {
     private get root() { return $(this.selector) }
-    get buttonHome() { return this.root.$('#aHome') }
-    get buttonSignUp() { return this.root.$('#aRegistration') }
-    get buttonLogIn() { return this.root.$('#aLogin') }
-    get buttonV() { return this.root.$('a.navbar-brand') }
+    get aHome() { return this.root.$('#aHome') }
+    get aSignUp() { return this.root.$('#aRegistration') }
+    get aLogIn() { return this.root.$('#aLogin') }
+    get aV() { return this.root.$('a.navbar-brand') }
     get loggedName() { return this.root.$('#sploggedInName') }
-    get logOut() { return this.root.$('#aLogoutTop') }
+    get aLogOut() { return this.root.$('#aLogoutTop') }
     get itemsInCart() { return this.root.$('#spCartTopMsg') }
     get buttonItemsInCart() { return this.root.$('#imgCartTop') }
-    get addresses() { return this.root.$('#aAddresses') }
-    get addAddresses() { return this.root.$('#aAddAddress') }
-    get cards() { return this.root.$('#aCards') }
-    get addCard() { return this.root.$('#aAddCard') }
-    get editProfile() { return this.root.$('#aEditProfile') }
+    get aAddresses() { return this.root.$('#aAddresses') }
+    get aAddAddress() { return this.root.$('#aAddAddress') }
+    get aCards() { return this.root.$('#aCards') }
+    get aAddCard() { return this.root.$('#aAddCard') }
+    get aEditProfile() { return this.root.$('#aEditProfile') }
+
+    @step()
+    goToHome(){
+        this.aHome.click();
+    }
+    @step()
+    signUp(){
+        this.aSignUp.click();
+    }
+    @step()
+    logIn(){
+        this.aLogIn.click();
+    }
+    @step()
+    pressV(){
+        this.aV.click();
+    }
+    @step()
+    logOut(){
+        this.aLogOut.click();
+    }
+    @step()
+    goToCart(){
+        this.buttonItemsInCart.click();
+    }
+    @step()
+    showAddresses(){
+        this.aAddresses.click();
+    }
+    @step()
+    showCards(){
+        this.aCards.click();
+    }
+    @step()
+    addCard(){
+        this.aAddCard.click();
+    }
+    @step()
+    addAddress(){
+        this.aAddAddress.click();
+    }
+    @step()
+    editProfile(){
+        this.aEditProfile.click()
+    }
+    
+
+
 
     constructor(private selector: string) { }
 }

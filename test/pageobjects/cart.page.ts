@@ -1,7 +1,7 @@
 
 
 import MainPage  from '../pageobjects/main.page';
-import Page from './page';
+import Page, { step } from './page';
 class CartPage extends Page {
     get buttonEmpty(){return $('#btnEmpty')}
     get buttonPurchase(){return $('#btnPurchase')}
@@ -9,14 +9,18 @@ class CartPage extends Page {
     get paymentType(){return $('#slctPayment')}
     get totalPrise(){return $('#spCartTotal')}
 
-    card = new CardProduct('.products-list')
-    
+    get cards(){
+        return $$('.product-card')
+        .map(value => new CardProduct('#' + value.getAttribute('id')));
+    }
     getPath(): string {
         return 'common/cart';
     }
-    empty(){
+    @step()
+    emptyCart(){
         this.buttonEmpty.click();
     }
+    @step()
     purchase(){
         this.buttonPurchase.click();
     }
