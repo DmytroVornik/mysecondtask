@@ -56,4 +56,4 @@ describe('main page', () => {
         CartPage.emptyCart();
         MainPage.menu.logOut();
     })
- });
+});

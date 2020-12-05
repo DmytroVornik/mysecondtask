@@ -1,14 +1,11 @@
 import AllureReporter from "@wdio/allure-reporter";
-
 export default abstract class Page {
-  
+
   open() {
     browser.url(this.getPath());
     return this;
   }
-
   abstract getPath(): string;
-
 }
 
 export function step(description?: string) {

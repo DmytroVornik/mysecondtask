@@ -4,12 +4,13 @@ import AllureReporter from "@wdio/allure-reporter";
 
 
 class LoginPage extends Page {
-    getPath() {
-        return 'login';
-    }
     get loginName() { return $('#tfLoginname') }
     get password() { return $('#tfPassword') }
     get buttonSubmit() { return $('#btnSubmitLogin') }
+
+    getPath() {
+        return 'login';
+    }
     @step()
     setLoginAndPassword(login = "qq", password = "123") {
         AllureReporter.addStep('Enter login');
@@ -20,7 +21,7 @@ class LoginPage extends Page {
         browser.takeScreenshot();
     }
     @step('Click submit button')
-    submit(){
+    submit() {
         this.buttonSubmit.click();
     }
 }

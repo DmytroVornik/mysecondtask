@@ -2,15 +2,16 @@ import DetailsPage from "./details.page";
 import Page, { step } from "./page"
 
 class MainPage extends Page {
-    getPath(): string {
-        return '/';
-    }
+
     search = new Search('.row');
     categories = new Categories('#divCategoryNames')
     menu = new Menu('.container');
     get cards() {
         return $$('.product-card')
             .map(value => new CardProduct('#' + value.getAttribute('id')));
+    }
+    getPath(): string {
+        return '/';
     }
 }
 
@@ -25,6 +26,7 @@ class CardProduct {
     get description() { return this.root.$('id*=imageItemDescription') }
     get tags() { return this.root.$('id*=imageItemTags') }
     constructor(private selector: string) { }
+
     @step()
     getTitle() {
         return this.title.getText();
@@ -115,56 +117,52 @@ class Menu {
     get aCards() { return this.root.$('#aCards') }
     get aAddCard() { return this.root.$('#aAddCard') }
     get aEditProfile() { return this.root.$('#aEditProfile') }
+    constructor(private selector: string) { }
 
     @step()
-    goToHome(){
+    goToHome() {
         this.aHome.click();
     }
     @step()
-    signUp(){
+    signUp() {
         this.aSignUp.click();
     }
     @step()
-    logIn(){
+    logIn() {
         this.aLogIn.click();
     }
     @step()
-    pressV(){
+    pressV() {
         this.aV.click();
     }
     @step()
-    logOut(){
+    logOut() {
         this.aLogOut.click();
     }
     @step()
-    goToCart(){
+    goToCart() {
         this.buttonItemsInCart.click();
     }
     @step()
-    showAddresses(){
+    showAddresses() {
         this.aAddresses.click();
     }
     @step()
-    showCards(){
+    showCards() {
         this.aCards.click();
     }
     @step()
-    addCard(){
+    addCard() {
         this.aAddCard.click();
     }
     @step()
-    addAddress(){
+    addAddress() {
         this.aAddAddress.click();
     }
     @step()
-    editProfile(){
+    editProfile() {
         this.aEditProfile.click()
     }
-    
-
-
-
-    constructor(private selector: string) { }
 }
 
 type Options = {

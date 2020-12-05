@@ -1,4 +1,5 @@
 import { step } from './page';
+
 class DetailsPage {
     get buttonAddToCart() { return $('#aAddToCart') }
     get buttonBackToAll() { return $('#aBack') }
@@ -8,7 +9,7 @@ class DetailsPage {
     get ratingLastChild() { return $('div.product-image > div > img:nth-child(5)') }
     get description() { return $('#divImageItemDescription') }
     get tags() { return $('#divImageItemTags') }
-    
+
     @step()
     getRating() {
         let lastStar = this.ratingLastChild.getAttribute('alt');
