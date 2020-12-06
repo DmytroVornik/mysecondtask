@@ -34,5 +34,17 @@ class CardProduct {
     get increment() { return this.root.$('[name=btnInc]') }
     get linkImg() { return this.root.$('a') }
     constructor(private selector: string) { }
+    @step()
+    clickPlus(){
+        this.increment.click();
+    }
+    @step()
+    clickMinus(){
+        this.decrement.click();
+    }
+    @step()
+    goToCardDetails(){
+        this.linkImg.click();
+    }
 }
 export default new CartPage()

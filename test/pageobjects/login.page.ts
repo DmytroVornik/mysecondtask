@@ -14,9 +14,11 @@ class LoginPage extends Page {
     @step()
     setLoginAndPassword(login = "qq", password = "123") {
         AllureReporter.addStep('Enter login');
+        this.loginName.waitForClickable();
         this.loginName.setValue(login);
         browser.takeScreenshot();
         AllureReporter.addStep('Enter password')
+        this.password.waitForClickable();
         this.password.setValue(password);
         browser.takeScreenshot();
     }

@@ -1,4 +1,4 @@
-import DetailsPage from "./details.page";
+import AllureReporter from "@wdio/allure-reporter";
 import Page, { step } from "./page"
 
 class MainPage extends Page {
@@ -50,7 +50,6 @@ class CardProduct {
     @step('Open card details')
     open() {
         this.buttonDetails.click();
-        return this;
     }
     @step()
     getRating() {
@@ -74,7 +73,9 @@ class Search {
     @step()
     setValuesForSearching(options: Options) {
         options.searchImage === undefined || this.searchImage.setValue(options.searchImage);
+        AllureReporter.addStep('Enter ratingFrom');
         options.ratingFrom === undefined || this.ratingFrom.setValue(options.ratingFrom);
+        AllureReporter.addStep('Enter ratingTo');
         options.ratingTo === undefined || this.ratingTo.setValue(options.ratingTo);
         options.priceFrom === undefined || this.priceFrom.setValue(options.priceFrom);
         options.priceTo === undefined || this.priceTo.setValue(options.priceTo);
