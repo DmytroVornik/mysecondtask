@@ -24,9 +24,9 @@ class CartPage extends Page {
 }
 class CardProduct {
     private get root() { return $(this.selector) }
-    get author() { return this.root.$('id*=imageItemsAuthor') }
-    get title() { return this.root.$('id*=imageItemTitle') }
-    get price() { return this.root.$('id*=imageItemPrice') }
+    get author() { return this.root.$('id*=Author') }
+    get title() { return this.root.$('id*=Title') }
+    get price() { return this.root.$('id*=Price') }
     get count() { return this.root.$('div.product-card__price > span:nth-child(3)') }
     get decrement() { return this.root.$('[name=btnDec]') }
     get increment() { return this.root.$('[name=btnInc]') }

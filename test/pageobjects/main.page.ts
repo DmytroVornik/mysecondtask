@@ -48,13 +48,15 @@ class CardProduct {
     private get root() { return $(this.selector) }
     get buttonDetails() { return this.root.$('a.button') }
     get picture() { return this.root.$('a > img') }
-    get author() { return this.root.$('span') }
-    get price() { return this.root.$('.product-card__price') }
-    get title() { return this.root.$('.product-card__title') }
-    get rating() { return this.root.$$('div.product-card__description > div:nth-child(2) > [src="/images/star-active.svg"]') }
-    get description() { return this.root.$('id*=imageItemDescription') }
-    get tags() { return this.root.$('id*=imageItemTags') }
+    get author() { return this.root.$('id*=Author') }
+    get price() { return this.root.$('class*=__value') }
+    get title() { return this.root.$('id*=Title') }
+    get rating() { return this.root.$$('[src="/images/star-active.svg"]') }
+    get description() { return this.root.$('id*=Description') }
+    get tags() { return this.root.$('id*=Tags') }
     constructor(private selector: string) { }
+
+
 
     @step()
     getTitle() {

@@ -3,20 +3,18 @@ import { step } from './page';
 class DetailsPage {
     get buttonAddToCart() { return $('#aAddToCart') }
     get buttonBackToAll() { return $('#aBack') }
-    get author() { return $('#divImageItemAuthor') }
-    get price() { return $('.product__value') }
-    get title() { return $('#tImageItemTitle') }
-    get ratingLastChild() { return $('div.product-image > div > img:nth-child(5)') }
-    get description() { return $('#divImageItemDescription') }
-    get tags() { return $('#divImageItemTags') }
+    get author() { return $('id*=Author') }
+    get price() { return $('class*=__value') }
+    get title() { return $('id*=Title') }
+    get rating() { return $$('[src="/images/star-active.svg"]') }
+    get description() { return $('id*=Description') }
+    get tags() { return $('id*=Tags') }
 
 
 
     @step()
     getRating() {
-        let lastStar = this.ratingLastChild.getAttribute('alt');
-        let rating = 5 - Number(lastStar);
-        return rating;
+        return this.rating.length;
     }
     @step()
     getTitle() {
