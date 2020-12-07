@@ -10,7 +10,7 @@ class DetailsPage {
     get description() { return $('#divImageItemDescription') }
     get tags() { return $('#divImageItemTags') }
 
-    
+
 
     @step()
     getRating() {
@@ -39,10 +39,12 @@ class DetailsPage {
         return this.tags.getText();
     }
     @step('Add card to cart')
-    addToCart() {
+    addToCart(value = 1) {
         this.buttonAddToCart.waitForDisplayed();
         browser.takeScreenshot();
-        this.buttonAddToCart.click();
+        for(let i = 0; i < value; i ++ ){
+            this.buttonAddToCart.click();
+        }   
         browser.takeScreenshot();
         return this;
     }

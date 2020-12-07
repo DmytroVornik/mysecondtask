@@ -62,4 +62,51 @@ describe('main page', () => {
         browser.takeScreenshot();
         AllureReporter.endStep();
     });
+
+    it('Add three different card to cart with logged user',() => {
+        MainPage.menu.logIn();
+        expect(browser.getUrl()).toEqual('http://localhost:5054/login');
+        LoginPage.setLoginAndPassword();
+        expect(LoginPage.loginName.getValue()).toEqual('qq');
+        expect(LoginPage.password.getValue()).toEqual('123');
+        LoginPage.submit();
+        AllureReporter.startStep('Add three different cards');
+        MainPage.cards[0].open();
+        expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
+        DetailsPage.addToCart();
+        DetailsPage.backToAll();
+        MainPage.cards[1].open();
+        DetailsPage.addToCart();
+        DetailsPage.backToAll();
+        MainPage.cards[2].open();
+        DetailsPage.addToCart();
+        DetailsPage.backToAll();
+        expect(MainPage.menu.itemsInCart.getText()).toEqual('3');
+        MainPage.menu.goToCart();
+        expect(CartPage.cards[0].count.getText()).toEqual('1');
+        expect(CartPage.cards[1].count.getText()).toEqual('1');
+        expect(CartPage.cards[2].count.getText()).toEqual('1');
+        browser.takeScreenshot();
+        AllureReporter.endStep();
+    });
+
+    it('Add three identical cards to cart with logged user',() => {
+        MainPage.menu.logIn();
+        expect(browser.getUrl()).toEqual('http://localhost:5054/login');
+        LoginPage.setLoginAndPassword();
+        expect(LoginPage.loginName.getValue()).toEqual('qq');
+        expect(LoginPage.password.getValue()).toEqual('123');
+        LoginPage.submit();
+        AllureReporter.startStep('Add three identical cards');
+        expect(MainPage.menu.loggedName).toBeDisplayed();
+        MainPage.cards[0].open();
+        expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
+        DetailsPage.addToCart(3);
+        expect(MainPage.menu.itemsInCart.getText()).toEqual('1');
+        MainPage.menu.goToCart();
+        browser.takeScreenshot();
+        expect(CartPage.cards[0].count.getText()).toEqual('3');
+        AllureReporter.endStep();
+
+    });
 });
