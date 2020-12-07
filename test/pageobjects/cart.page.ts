@@ -27,7 +27,7 @@ class CardProduct {
     get author() { return this.root.$('id*=imageItemsAuthor') }
     get title() { return this.root.$('id*=imageItemTitle') }
     get price() { return this.root.$('id*=imageItemPrice') }
-    get count() { return this.root.$('id*=imageItemCount') }
+    get count() { return this.root.$('div.product-card__price > span:nth-child(3)') }
     get decrement() { return this.root.$('[name=btnDec]') }
     get increment() { return this.root.$('[name=btnInc]') }
     get linkImg() { return this.root.$('a') }

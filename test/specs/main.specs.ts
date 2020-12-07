@@ -7,6 +7,8 @@ import AllureReporter from "@wdio/allure-reporter";
 describe('main page', () => {
     beforeEach(() => {
         MainPage.open();
+        MainPage.setPreConditional();
+        
     });
 
     it('Add card to cart without login', () => {
@@ -30,17 +32,17 @@ describe('main page', () => {
                        .pressSearch();
         expect(MainPage.cards[0].getRating()).toEqual(5);
         MainPage.cards[0].open();
+        expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
         DetailsPage.addToCart();
         expect(MainPage.menu.itemsInCart.getText()).toEqual('1');
         MainPage.menu.goToCart();
+        expect(CartPage.cards[0].count.getText()).toEqual('1');
         browser.takeScreenshot();
         AllureReporter.endStep();
-        CartPage.emptyCart();
-        MainPage.menu.logOut();
     });
 
     it('Add one card to cart with logged user', () => {
-        MainPage.menu.aLogIn.click();
+        MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual('http://localhost:5054/login');
         LoginPage.setLoginAndPassword();
         expect(LoginPage.loginName.getValue()).toEqual('qq');
@@ -52,12 +54,12 @@ describe('main page', () => {
                        .pressSearch();
         expect(MainPage.cards[0].getRating()).toEqual(5);
         MainPage.cards[0].open();
+        expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
         DetailsPage.addToCart();
         expect(MainPage.menu.itemsInCart.getText()).toEqual('1');
         MainPage.menu.goToCart();
+        expect(CartPage.cards[0].count.getText()).toEqual('1');
         browser.takeScreenshot();
         AllureReporter.endStep();
-        CartPage.emptyCart();
-        MainPage.menu.logOut();
     });
 });

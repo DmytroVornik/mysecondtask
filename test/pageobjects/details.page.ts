@@ -10,6 +10,8 @@ class DetailsPage {
     get description() { return $('#divImageItemDescription') }
     get tags() { return $('#divImageItemTags') }
 
+    
+
     @step()
     getRating() {
         let lastStar = this.ratingLastChild.getAttribute('alt');

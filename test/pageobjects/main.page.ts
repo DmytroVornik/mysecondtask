@@ -1,5 +1,9 @@
 import AllureReporter from "@wdio/allure-reporter";
 import Page, { step } from "./page"
+import LoginPage from '../pageobjects/login.page';
+import DetailsPage from '../pageobjects/details.page';
+import CartPage from '../pageobjects/cart.page';
+
 
 class MainPage extends Page {
     search = new Search('.row');
@@ -11,6 +15,32 @@ class MainPage extends Page {
     }
     getPath(): string {
         return '/';
+    }
+
+    @step()
+    setPreConditional() {
+        if(this.menu.aLogIn.isDisplayed()){
+            this.menu.logIn();
+            LoginPage.setLoginAndPassword();
+            LoginPage.submit();
+            this.cards[0].open();
+            DetailsPage.addToCart();
+            this.menu.goToCart();
+            CartPage.emptyCart();
+            this.menu.logOut();
+        }
+
+        else if (this.menu.buttonItemsInCart.isDisplayed()) {
+            this.menu.goToCart();
+            CartPage.emptyCart();
+            this.menu.logOut();
+        }
+        else {
+            this.menu.logOut();
+        }
+        
+        
+
     }
 }
 
