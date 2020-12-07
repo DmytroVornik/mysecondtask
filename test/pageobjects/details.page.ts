@@ -38,7 +38,10 @@ class DetailsPage {
     }
     @step('Add card to cart')
     addToCart() {
+        this.buttonAddToCart.waitForDisplayed();
+        browser.takeScreenshot();
         this.buttonAddToCart.click();
+        browser.takeScreenshot();
         return this;
     }
     @step()

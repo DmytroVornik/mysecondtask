@@ -4,18 +4,17 @@ import LoginPage from '../pageobjects/login.page'
 import CartPage from '../pageobjects/cart.page';
 import AllureReporter from "@wdio/allure-reporter";
 
-
-
 describe('main page', () => {
     beforeEach(() => {
         MainPage.open();
     });
 
-    it('Add card to cart without login ', () => {
+    it('Add card to cart without login', () => {
         expect(MainPage.menu.loggedName).not.toBeDisplayed();
         AllureReporter.startStep('Add one card rated 5 to cart');
         MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
                        .pressSearch();
+        expect(MainPage.cards[0].getRating()).toEqual(5);
         MainPage.cards[0].open();
         browser.takeScreenshot();
         DetailsPage.addToCart();
@@ -29,6 +28,7 @@ describe('main page', () => {
         AllureReporter.startStep('Add one card rated 5 to cart');
         MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
                        .pressSearch();
+        expect(MainPage.cards[0].getRating()).toEqual(5);
         MainPage.cards[0].open();
         DetailsPage.addToCart();
         expect(MainPage.menu.itemsInCart.getText()).toEqual('1');
@@ -50,6 +50,7 @@ describe('main page', () => {
         expect(MainPage.menu.loggedName).toBeDisplayed();
         MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
                        .pressSearch();
+        expect(MainPage.cards[0].getRating()).toEqual(5);
         MainPage.cards[0].open();
         DetailsPage.addToCart();
         expect(MainPage.menu.itemsInCart.getText()).toEqual('1');

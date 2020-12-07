@@ -1,7 +1,5 @@
-
-
-import MainPage from '../pageobjects/main.page';
 import Page, { step } from './page';
+
 class CartPage extends Page {
     get buttonEmpty() { return $('#btnEmpty') }
     get buttonPurchase() { return $('#btnPurchase') }
@@ -35,15 +33,15 @@ class CardProduct {
     get linkImg() { return this.root.$('a') }
     constructor(private selector: string) { }
     @step()
-    clickPlus(){
+    clickPlus() {
         this.increment.click();
     }
     @step()
-    clickMinus(){
+    clickMinus() {
         this.decrement.click();
     }
     @step()
-    goToCardDetails(){
+    goToCardDetails() {
         this.linkImg.click();
     }
 }

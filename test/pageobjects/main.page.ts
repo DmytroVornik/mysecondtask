@@ -2,7 +2,6 @@ import AllureReporter from "@wdio/allure-reporter";
 import Page, { step } from "./page"
 
 class MainPage extends Page {
-
     search = new Search('.row');
     categories = new Categories('#divCategoryNames')
     menu = new Menu('.container');
@@ -22,7 +21,7 @@ class CardProduct {
     get author() { return this.root.$('span') }
     get price() { return this.root.$('.product-card__price') }
     get title() { return this.root.$('.product-card__title') }
-    get ratingLastChild() { return this.root.$('div.product-card__description > div:nth-child(2) > img:nth-child(5)') }
+    get rating() { return this.root.$$('div.product-card__description > div:nth-child(2) > [src="/images/star-active.svg"]') }
     get description() { return this.root.$('id*=imageItemDescription') }
     get tags() { return this.root.$('id*=imageItemTags') }
     constructor(private selector: string) { }
@@ -49,13 +48,14 @@ class CardProduct {
     }
     @step('Open card details')
     open() {
+        this.buttonDetails.waitForDisplayed();
+        browser.takeScreenshot();
         this.buttonDetails.click();
+        browser.takeScreenshot()
     }
     @step()
     getRating() {
-        let lastStar = this.ratingLastChild.getAttribute('alt');
-        let rating = 5 - Number(lastStar);
-        return rating;
+        return this.rating.length;
     }
 }
 
