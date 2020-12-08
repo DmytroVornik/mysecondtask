@@ -5,8 +5,6 @@ import DetailsPage from './details.page';
 import CartPage from '../pageobjects/cart.page';
 import BaseCard from "./baseCard.page";
 
-
-
 class MainPage extends Page {
     search = new Search('.row');
     categories = new Categories('#divCategoryNames')
@@ -19,7 +17,6 @@ class MainPage extends Page {
     getPath(): string {
         return '/';
     }
-
     @step()
     setPreConditional() {
         if (this.menu.aLogIn.isDisplayed()) {
@@ -32,7 +29,6 @@ class MainPage extends Page {
             CartPage.emptyCart();
             this.menu.logOut();
         }
-
         else if (this.menu.buttonItemsInCart.isDisplayed()) {
             this.menu.goToCart();
             CartPage.emptyCart();
@@ -41,12 +37,10 @@ class MainPage extends Page {
         else {
             this.menu.logOut();
         }
-
     }
 }
 
 class CardProduct extends BaseCard {
-    
     get buttonDetails() { return this.root.$('a.button') }
     get picture() { return this.root.$('a > img') }
 
@@ -62,7 +56,6 @@ class CardProduct extends BaseCard {
     getTags() {
         return this.tags.getText();
     }
-
     @step('Open card details')
     open() {
         this.buttonDetails.waitForDisplayed();

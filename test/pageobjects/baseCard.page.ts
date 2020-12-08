@@ -34,7 +34,6 @@ class BaseCard {
     getTags() {
         return this.tags.getText();
     }
-    
 }
 export default BaseCard
 

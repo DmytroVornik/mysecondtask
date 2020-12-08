@@ -25,6 +25,7 @@ class CartPage {
         this.buttonPurchase.click();
     }
 }
+
 class Card {
     private get root(){return $(this.selector) }
     get author() { return this.root.$('[id*=Author]') }

@@ -2,13 +2,11 @@ import BaseCard from './baseCard.page';
 import { step } from './page';
 
 class DetailsPage extends BaseCard {
-
     get buttonAddToCart() { return this.root.$('#aAddToCart') }
     get buttonBackToAll() { return this.root.$('#aBack') }
     constructor(){
         super('.content');
     }
-    
     
     @step('Add card to cart')
     addToCart(value = 1) {
@@ -24,7 +22,5 @@ class DetailsPage extends BaseCard {
     backToAll() {
         this.buttonBackToAll.click();
     }
-
 }
-
 export default new DetailsPage()

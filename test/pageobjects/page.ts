@@ -1,4 +1,5 @@
 import AllureReporter from "@wdio/allure-reporter";
+
 export default abstract class Page {
 
   open() {
@@ -7,6 +8,7 @@ export default abstract class Page {
   }
   abstract getPath(): string;
 }
+
 
 export function step(description?: string) {
   return (target: Object, propertyName: string, propertyDescriptor: PropertyDescriptor): PropertyDescriptor => {

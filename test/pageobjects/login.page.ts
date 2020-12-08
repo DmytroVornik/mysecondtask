@@ -13,7 +13,6 @@ class LoginPage extends Page {
     }
     @step()
     setLoginAndPassword() {
-
         AllureReporter.addStep('Enter login');
         this.loginName.waitForClickable();
         browser.takeScreenshot();

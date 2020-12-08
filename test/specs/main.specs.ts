@@ -7,14 +7,14 @@ import AllureReporter from "@wdio/allure-reporter";
 describe('main page', () => {
     beforeEach(() => {
         MainPage.open();
-        MainPage.setPreConditional();        
+        MainPage.setPreConditional();
     });
 
     it('Add card to cart without login', () => {
         expect(MainPage.menu.loggedName).not.toBeDisplayed();
         AllureReporter.startStep('Add one card rated 5 to cart');
         MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-                       .pressSearch();
+                .pressSearch();
         expect(MainPage.cards[0].getRating()).toEqual(5);
         MainPage.cards[0].open();
         browser.takeScreenshot();
@@ -38,10 +38,9 @@ describe('main page', () => {
         expect(CartPage.cards[0].count.getText()).toEqual('1');
         browser.takeScreenshot();
         AllureReporter.endStep();
-
     });
 
-    xit('Add one card to cart with logged user', () => {
+    it('Add one card to cart with logged user', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual('http://localhost:5054/login');
         LoginPage.setLoginAndPassword();
@@ -63,7 +62,7 @@ describe('main page', () => {
         AllureReporter.endStep();
     });
 
-    xit('Add three different card to cart with logged user',() => {
+    it('Add three different card to cart with logged user', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual('http://localhost:5054/login');
         LoginPage.setLoginAndPassword();
@@ -90,7 +89,7 @@ describe('main page', () => {
         AllureReporter.endStep();
     });
 
-    xit('Add three identical cards to cart with logged user',() => {
+    it('Add three identical cards to cart with logged user', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual('http://localhost:5054/login');
         LoginPage.setLoginAndPassword();
@@ -107,6 +106,5 @@ describe('main page', () => {
         browser.takeScreenshot();
         expect(CartPage.cards[0].count.getText()).toEqual('3');
         AllureReporter.endStep();
-        
     });
 });
