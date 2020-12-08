@@ -1,8 +1,10 @@
 import AllureReporter from "@wdio/allure-reporter";
 import Page, { step } from "./page"
-import LoginPage from '../pageobjects/login.page';
-import DetailsPage from '../pageobjects/details.page';
+import LoginPage from './login.page';
+import DetailsPage from './details.page';
 import CartPage from '../pageobjects/cart.page';
+import BaseCard from "./baseCard.page";
+
 
 
 class MainPage extends Page {
@@ -13,13 +15,14 @@ class MainPage extends Page {
         return $$('.product-card')
             .map(value => new CardProduct('#' + value.getAttribute('id')));
     }
+
     getPath(): string {
         return '/';
     }
 
     @step()
     setPreConditional() {
-        if(this.menu.aLogIn.isDisplayed()){
+        if (this.menu.aLogIn.isDisplayed()) {
             this.menu.logIn();
             LoginPage.setLoginAndPassword();
             LoginPage.submit();
@@ -38,37 +41,18 @@ class MainPage extends Page {
         else {
             this.menu.logOut();
         }
-        
-        
 
     }
 }
 
-class CardProduct {
-    private get root() { return $(this.selector) }
+class CardProduct extends BaseCard {
+    
     get buttonDetails() { return this.root.$('a.button') }
     get picture() { return this.root.$('a > img') }
-    get author() { return this.root.$('id*=Author') }
-    get price() { return this.root.$('class*=__value') }
-    get title() { return this.root.$('id*=Title') }
-    get rating() { return this.root.$$('[src="/images/star-active.svg"]') }
-    get description() { return this.root.$('id*=Description') }
-    get tags() { return this.root.$('id*=Tags') }
-    constructor(private selector: string) { }
-
-
 
     @step()
-    getTitle() {
-        return this.title.getText();
-    }
-    @step()
-    getAuthor() {
-        return this.author.getText();
-    }
-    @step()
-    getPrice() {
-        return this.price.getText();
+    getRating() {
+        return this.rating.length;
     }
     @step()
     getDescription() {
@@ -78,18 +62,17 @@ class CardProduct {
     getTags() {
         return this.tags.getText();
     }
+
     @step('Open card details')
     open() {
         this.buttonDetails.waitForDisplayed();
         browser.takeScreenshot();
         this.buttonDetails.click();
         browser.takeScreenshot()
-    }
-    @step()
-    getRating() {
-        return this.rating.length;
+
     }
 }
+
 
 class Search {
     private get root() { return $(this.selector) }
@@ -206,3 +189,4 @@ type Options = {
     priceTo?: number
 }
 export default new MainPage()
+

@@ -1,6 +1,8 @@
 import Page, { step } from './page';
+import BaseCard from './baseCard.page';
 
-class CartPage extends Page {
+class CartPage {
+    
     get buttonEmpty() { return $('#btnEmpty') }
     get buttonPurchase() { return $('#btnPurchase') }
     get deliveryAddress() { return $('#slctAddress') }
@@ -8,8 +10,9 @@ class CartPage extends Page {
     get totalPrise() { return $('#spCartTotal') }
     get cards() {
         return $$('.product-card')
-            .map(value => new CardProduct('#' + value.getAttribute('id')));
+            .map(value => new Card('#' + value.getAttribute('id')));
     }
+    
     getPath(): string {
         return 'common/cart';
     }
@@ -22,16 +25,18 @@ class CartPage extends Page {
         this.buttonPurchase.click();
     }
 }
-class CardProduct {
-    private get root() { return $(this.selector) }
-    get author() { return this.root.$('id*=Author') }
-    get title() { return this.root.$('id*=Title') }
-    get price() { return this.root.$('id*=Price') }
-    get count() { return this.root.$('div.product-card__price > span:nth-child(3)') }
+class Card {
+    private get root(){return $(this.selector) }
+    get author() { return this.root.$('[id*=Author]') }
+    get title() { return this.root.$('[id*=Title]') }
+    get price() { return this.root.$('[id*=Price]') }
+    get count() { return this.root.$('[id*=Count]') }
     get decrement() { return this.root.$('[name=btnDec]') }
     get increment() { return this.root.$('[name=btnInc]') }
     get linkImg() { return this.root.$('a') }
-    constructor(private selector: string) { }
+    constructor(private selector:string){}
+
+    
     @step()
     clickPlus() {
         this.increment.click();

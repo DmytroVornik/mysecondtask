@@ -1,41 +1,15 @@
+import BaseCard from './baseCard.page';
 import { step } from './page';
 
-class DetailsPage {
-    get buttonAddToCart() { return $('#aAddToCart') }
-    get buttonBackToAll() { return $('#aBack') }
-    get author() { return $('id*=Author') }
-    get price() { return $('class*=__value') }
-    get title() { return $('id*=Title') }
-    get rating() { return $$('[src="/images/star-active.svg"]') }
-    get description() { return $('id*=Description') }
-    get tags() { return $('id*=Tags') }
+class DetailsPage extends BaseCard {
 
-
-
-    @step()
-    getRating() {
-        return this.rating.length;
+    get buttonAddToCart() { return this.root.$('#aAddToCart') }
+    get buttonBackToAll() { return this.root.$('#aBack') }
+    constructor(){
+        super('.content');
     }
-    @step()
-    getTitle() {
-        return this.title.getText();
-    }
-    @step()
-    getAuthor() {
-        return this.author.getText();
-    }
-    @step()
-    getPrice() {
-        return this.price.getText();
-    }
-    @step()
-    getDescription() {
-        return this.description.getText();
-    }
-    @step()
-    getTags() {
-        return this.tags.getText();
-    }
+    
+    
     @step('Add card to cart')
     addToCart(value = 1) {
         this.buttonAddToCart.waitForDisplayed();
@@ -50,5 +24,7 @@ class DetailsPage {
     backToAll() {
         this.buttonBackToAll.click();
     }
+
 }
+
 export default new DetailsPage()
