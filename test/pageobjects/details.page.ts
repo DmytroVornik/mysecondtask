@@ -1,20 +1,18 @@
 import BaseCard from './baseCard.page';
-import { step } from './page';
+import AbstractCardPage from './abstractCard.page';
+import { step } from "../utils/reports"
 
-class DetailsPage extends BaseCard {
-    get buttonAddToCart() { return this.root.$('#aAddToCart') }
-    get buttonBackToAll() { return this.root.$('#aBack') }
-    constructor(){
+class DetailsPage extends AbstractCardPage {
+    get buttonAddToCart() { return $('#aAddToCart') }
+    get buttonBackToAll() { return $('#aBack') }
+    constructor() {
         super('.content');
     }
-    
+
     @step('Add card to cart')
-    addToCart(value = 1) {
+    pressButton() {
         this.buttonAddToCart.waitForDisplayed();
-        browser.takeScreenshot();
-        for(let i = 0; i < value; i ++ ){
-            this.buttonAddToCart.click();
-        }   
+        this.buttonAddToCart.click();
         browser.takeScreenshot();
         return this;
     }

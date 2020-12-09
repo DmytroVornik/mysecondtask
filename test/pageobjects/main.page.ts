@@ -1,9 +1,8 @@
 import AllureReporter from "@wdio/allure-reporter";
-import Page, { step } from "./page"
-import LoginPage from './login.page';
-import DetailsPage from './details.page';
-import CartPage from '../pageobjects/cart.page';
+import Page from "./page"
+import { step } from "../utils/reports"
 import BaseCard from "./baseCard.page";
+import AbstractCardPage from "./abstractCard.page";
 
 class MainPage extends Page {
     search = new Search('.row');
@@ -17,47 +16,17 @@ class MainPage extends Page {
     getPath(): string {
         return '/';
     }
-    @step()
-    setPreConditional() {
-        if (this.menu.aLogIn.isDisplayed()) {
-            this.menu.logIn();
-            LoginPage.setLoginAndPassword();
-            LoginPage.submit();
-            this.cards[0].open();
-            DetailsPage.addToCart();
-            this.menu.goToCart();
-            CartPage.emptyCart();
-            this.menu.logOut();
-        }
-        else if (this.menu.buttonItemsInCart.isDisplayed()) {
-            this.menu.goToCart();
-            CartPage.emptyCart();
-            this.menu.logOut();
-        }
-        else {
-            this.menu.logOut();
-        }
-    }
+    
 }
 
-class CardProduct extends BaseCard {
+class CardProduct extends AbstractCardPage {
+
     get buttonDetails() { return this.root.$('a.button') }
     get picture() { return this.root.$('a > img') }
 
-    @step()
-    getRating() {
-        return this.rating.length;
-    }
-    @step()
-    getDescription() {
-        return this.description.getText();
-    }
-    @step()
-    getTags() {
-        return this.tags.getText();
-    }
+
     @step('Open card details')
-    open() {
+    pressButton() {
         this.buttonDetails.waitForDisplayed();
         browser.takeScreenshot();
         this.buttonDetails.click();
@@ -65,7 +34,8 @@ class CardProduct extends BaseCard {
 
     }
 }
-
+//BaseCard > CatdCard
+//BaseCard > absr >CardProduct > DetailsPage
 
 class Search {
     private get root() { return $(this.selector) }

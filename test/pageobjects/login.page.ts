@@ -1,8 +1,8 @@
-import Page, { step } from "./page"
+import Page from "./page"
+import { step } from "../utils/reports"
 import AllureReporter from "@wdio/allure-reporter";
 
-const log = 'qq';
-const pas = '123';
+
 class LoginPage extends Page {
     get loginName() { return $('#tfLoginname') }
     get password() { return $('#tfPassword') }
@@ -12,16 +12,16 @@ class LoginPage extends Page {
         return 'login';
     }
     @step()
-    setLoginAndPassword() {
+    setLoginAndPassword({login, password}) {
         AllureReporter.addStep('Enter login');
         this.loginName.waitForClickable();
         browser.takeScreenshot();
-        this.loginName.setValue(log);
+        this.loginName.setValue(login);
         browser.takeScreenshot();
         AllureReporter.addStep('Enter password')
         this.password.waitForClickable();
         browser.takeScreenshot();
-        this.password.setValue(pas);
+        this.password.setValue(password);
         browser.takeScreenshot();
     }
     @step('Click submit button')

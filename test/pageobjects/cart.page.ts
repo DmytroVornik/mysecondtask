@@ -1,5 +1,5 @@
-import Page, { step } from './page';
-import BaseCard from './baseCard.page';
+import { step } from "../utils/reports"
+import BaseCard from "./baseCard.page"
 
 class CartPage {
     
@@ -26,16 +26,11 @@ class CartPage {
     }
 }
 
-class Card {
-    private get root(){return $(this.selector) }
-    get author() { return this.root.$('[id*=Author]') }
-    get title() { return this.root.$('[id*=Title]') }
-    get price() { return this.root.$('[id*=Price]') }
+class Card extends BaseCard  {
     get count() { return this.root.$('[id*=Count]') }
     get decrement() { return this.root.$('[name=btnDec]') }
     get increment() { return this.root.$('[name=btnInc]') }
     get linkImg() { return this.root.$('a') }
-    constructor(private selector:string){}
 
     
     @step()
