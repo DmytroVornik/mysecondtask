@@ -3,8 +3,8 @@ import LoginPage from '../pageobjects/login.page';
 import CartPage from '../pageobjects/cart.page';
 import DetailsPage from '../pageobjects/details.page';
 
-export function addCardToCart(number) {
-    MainPage.cards[number -1].pressButton();
+export function addCardToCart(numberCard) {
+    MainPage.cards[numberCard -1].pressButton();
     DetailsPage.pressButton();
     DetailsPage.backToAll();
 }
