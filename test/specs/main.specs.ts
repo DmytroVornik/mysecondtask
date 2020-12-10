@@ -30,7 +30,7 @@ describe('main page', () => {
         expect(MainPage.menu.loggedName).not.toBeDisplayed();
         steps('Add one card rated 5 to cart', () => {
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-                .pressSearch();
+                           .pressSearch();
             expect(MainPage.cards[0].getRating()).toEqual(5);
             MainPage.cards[0].open();
             browser.takeScreenshot();
@@ -41,7 +41,7 @@ describe('main page', () => {
         expect(MainPage.menu.loggedName.getText()).toEqual(DEFAULT_USER.login);
         steps('Add one card rated 5 to cart', () => {
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-                .pressSearch();
+                           .pressSearch();
             expect(MainPage.cards[0].getRating()).toEqual(5);
             MainPage.cards[0].open();
             expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
@@ -60,7 +60,7 @@ describe('main page', () => {
         steps('Add one cards rated 5 to cart', () => {
             expect(MainPage.menu.loggedName).toBeDisplayed();
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-                .pressSearch();
+                           .pressSearch();
             expect(MainPage.cards[0].getRating()).toEqual(5);
             MainPage.cards[0].open();
             expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
