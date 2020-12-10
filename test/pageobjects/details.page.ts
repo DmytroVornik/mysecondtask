@@ -1,8 +1,9 @@
 import BaseCard from './baseCard.page';
-import AbstractCardPage from './abstractCard.page';
+import {Menu} from './main.page';
+import CardPage from './Card.page';
 import { step } from "../utils/reports"
 
-class DetailsPage extends AbstractCardPage {
+class DetailsPage extends CardPage {
     get buttonAddToCart() { return $('#aAddToCart') }
     get buttonBackToAll() { return $('#aBack') }
     constructor() {
@@ -10,7 +11,7 @@ class DetailsPage extends AbstractCardPage {
     }
 
     @step('Add card to cart')
-    pressButton() {
+    addToCart() {
         this.buttonAddToCart.waitForDisplayed();
         this.buttonAddToCart.click();
         browser.takeScreenshot();

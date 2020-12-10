@@ -2,7 +2,6 @@ import { step } from "../utils/reports"
 import BaseCard from "./baseCard.page"
 
 class CartPage {
-    
     get buttonEmpty() { return $('#btnEmpty') }
     get buttonPurchase() { return $('#btnPurchase') }
     get deliveryAddress() { return $('#slctAddress') }
@@ -32,7 +31,6 @@ class Card extends BaseCard  {
     get increment() { return this.root.$('[name=btnInc]') }
     get linkImg() { return this.root.$('a') }
 
-    
     @step()
     clickPlus() {
         this.increment.click();

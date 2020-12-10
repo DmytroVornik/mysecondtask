@@ -1,4 +1,4 @@
-import MainPage from '../pageobjects/main.page'
+import MainPage, { Menu } from '../pageobjects/main.page'
 import DetailsPage from '../pageobjects/details.page'
 import CartPage from '../pageobjects/cart.page';
 import { accountLogin, addCardToCart, setPreConditional } from '../utils/functions';
@@ -10,29 +10,42 @@ describe('main page', () => {
     beforeEach(() => {
         MainPage.open();
         steps('set preconditions ', () => { setPreConditional(DEFAULT_USER) });
+    });
 
+    it('Add card by title', () => {
+        MainPage.menu.logIn();
+        expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
+        accountLogin(DEFAULT_USER);
+        steps('Add card ', () => {
+            expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
+            addCardToCart('Savannah N9 / 51kiloparsecs');
+            expect(MainPage.menu.itemsInCart.getText()).toEqual('1');
+            MainPage.menu.goToCart();
+            expect(CartPage.cards[0].getTitle()).toEqual('Savannah N9 / 51kiloparsecs');
+            browser.takeScreenshot();
+        });
     });
 
     it('Add card to cart without login', () => {
         expect(MainPage.menu.loggedName).not.toBeDisplayed();
         steps('Add one card rated 5 to cart', () => {
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-                .pressSearch();
+                           .pressSearch();
             expect(MainPage.cards[0].getRating()).toEqual(5);
-            MainPage.cards[0].pressButton();
+            MainPage.cards[0].open();
             browser.takeScreenshot();
-            DetailsPage.pressButton();
+            DetailsPage.addToCart();
         });
-        expect(browser.getUrl()).toEqual('http://localhost:5054/login');
+        expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER)
-        expect(MainPage.menu.loggedName.getText()).toEqual('qq');
+        expect(MainPage.menu.loggedName.getText()).toEqual(DEFAULT_USER.login);
         steps('Add one card rated 5 to cart', () => {
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-                .pressSearch();
+                           .pressSearch();
             expect(MainPage.cards[0].getRating()).toEqual(5);
-            MainPage.cards[0].pressButton();
+            MainPage.cards[0].open();
             expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
-            DetailsPage.pressButton();
+            DetailsPage.addToCart();
             expect(MainPage.menu.itemsInCart.getText()).toEqual('1');
             MainPage.menu.goToCart();
             expect(CartPage.cards[0].count.getText()).toEqual('1');
@@ -42,16 +55,16 @@ describe('main page', () => {
 
     it('Add one card to cart with logged user', () => {
         MainPage.menu.logIn();
-        expect(browser.getUrl()).toEqual('http://localhost:5054/login');
+        expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
         steps('Add one cards rated 5 to cart', () => {
             expect(MainPage.menu.loggedName).toBeDisplayed();
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-                .pressSearch();
+                           .pressSearch();
             expect(MainPage.cards[0].getRating()).toEqual(5);
-            MainPage.cards[0].pressButton();
+            MainPage.cards[0].open();
             expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
-            DetailsPage.pressButton();
+            DetailsPage.addToCart();
             expect(MainPage.menu.itemsInCart.getText()).toEqual('1');
             MainPage.menu.goToCart();
             expect(CartPage.cards[0].count.getText()).toEqual('1');
@@ -61,10 +74,9 @@ describe('main page', () => {
 
     it('Add three different card to cart with logged user', () => {
         MainPage.menu.logIn();
-        expect(browser.getUrl()).toEqual('http://localhost:5054/login');
+        expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
         steps('Add three different cards', () => {
-
             expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
             addCardToCart(1);
             addCardToCart(2);
@@ -80,7 +92,7 @@ describe('main page', () => {
 
     it('Add three identical cards to cart with logged user', () => {
         MainPage.menu.logIn();
-        expect(browser.getUrl()).toEqual('http://localhost:5054/login');
+        expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
         steps('Add three identical cards', () => {
             expect(MainPage.menu.loggedName).toBeDisplayed();

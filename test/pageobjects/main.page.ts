@@ -1,8 +1,7 @@
 import AllureReporter from "@wdio/allure-reporter";
 import Page from "./page"
 import { step } from "../utils/reports"
-import BaseCard from "./baseCard.page";
-import AbstractCardPage from "./abstractCard.page";
+import CardPage from "./Card.page";
 
 class MainPage extends Page {
     search = new Search('.row');
@@ -16,26 +15,20 @@ class MainPage extends Page {
     getPath(): string {
         return '/';
     }
-    
 }
 
-class CardProduct extends AbstractCardPage {
-
+class CardProduct extends CardPage {
     get buttonDetails() { return this.root.$('a.button') }
     get picture() { return this.root.$('a > img') }
 
-
     @step('Open card details')
-    pressButton() {
+    open() {
         this.buttonDetails.waitForDisplayed();
         browser.takeScreenshot();
         this.buttonDetails.click();
         browser.takeScreenshot()
-
     }
 }
-//BaseCard > CatdCard
-//BaseCard > absr >CardProduct > DetailsPage
 
 class Search {
     private get root() { return $(this.selector) }
@@ -81,7 +74,7 @@ class Categories {
     }
 }
 
-class Menu {
+export class Menu {
     private get root() { return $(this.selector) }
     get aHome() { return this.root.$('#aHome') }
     get aSignUp() { return this.root.$('#aRegistration') }

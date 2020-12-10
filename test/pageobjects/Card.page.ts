@@ -1,6 +1,6 @@
 import BaseCard from "./baseCard.page";
 
-abstract class AbstractCardPage extends BaseCard {
+class CardPage extends BaseCard {
     get rating() { return this.root.$$('[src="/images/star-active.svg"]') }
     get description() { return this.root.$('[id*=Description]') }
     get tags() { return this.root.$('[id*=Tags]') }
@@ -14,6 +14,5 @@ abstract class AbstractCardPage extends BaseCard {
     getTags() {
         return this.tags.getText();
     }
-    abstract pressButton()
 }
-export default AbstractCardPage
+export default CardPage
