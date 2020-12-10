@@ -17,6 +17,9 @@ export function addCardToCart(property: string | number) {
 }
 
 export function setPreConditional(user) {
+    if(MainPage.menu.loggedName !== user.loginName){
+        MainPage.menu.logOut();
+    }
     if (MainPage.menu.aLogIn.isDisplayed()) {
         MainPage.menu.logIn();
         LoginPage.setLoginAndPassword(user);
