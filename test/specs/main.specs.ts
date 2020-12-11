@@ -22,12 +22,11 @@ describe('main page', () => {
             expect(MainPage.menu.itemsInCart.getText()).toEqual('1');
             MainPage.menu.goToCart();
             expect(findCardInCart('Savannah N9 / 51kiloparsecs')?.getTitle()).toEqual('Savannah N9 / 51kiloparsecs');
-            //expect(CartPage.cards[0].getTitle()).toEqual('Savannah N9 / 51kiloparsecs');
             browser.takeScreenshot();
         });
     });
 
-    xit('Add card to cart without login', () => {
+    it('Add card to cart without login', () => {
         expect(MainPage.menu.loggedName).not.toBeDisplayed();
         steps('Add one card rated 5 to cart', () => {
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
@@ -54,7 +53,7 @@ describe('main page', () => {
         });
     });
 
-    xit('Add one card to cart with logged user', () => {
+    it('Add one card to cart with logged user', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
@@ -73,7 +72,7 @@ describe('main page', () => {
         });
     });
 
-    xit('Add three different card to cart with logged user', () => {
+    it('Add three different card to cart with logged user', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
@@ -91,7 +90,7 @@ describe('main page', () => {
         });
     });
 
-    xit('Add three identical cards to cart with logged user', () => {
+    it('Add three identical cards to cart with logged user', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
