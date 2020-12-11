@@ -23,6 +23,12 @@ class CartPage {
     purchase() {
         this.buttonPurchase.click();
     }
+    findCardInCart(title: string){
+        for(let i = 0; i < this.cards.length; i ++){
+            if(this.cards[i].getTitle() === title)
+            return this.cards[i];
+        }
+    }
 }
 
 class Card extends BaseCard  {
