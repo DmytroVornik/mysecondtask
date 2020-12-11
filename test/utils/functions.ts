@@ -16,6 +16,13 @@ export function addCardToCart(property: string | number) {
     DetailsPage.backToAll();
 }
 
+export function findCardInCart(title: string){
+    for(let i = 0; i < CartPage.cards.length; i ++){
+        if(CartPage.cards[i].getTitle() === title)
+        return CartPage.cards[i];
+    }
+}
+
 export function setPreConditional(user) {
     if (!MainPage.menu.aLogIn.isDisplayed() && MainPage.menu.loggedName !== user.loginName) {
         MainPage.menu.logOut();
