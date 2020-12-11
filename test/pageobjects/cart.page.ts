@@ -11,7 +11,7 @@ class CartPage {
         return $$('.product-card')
             .map(value => new Card('#' + value.getAttribute('id')));
     }
-    
+
     getPath(): string {
         return 'common/cart';
     }
@@ -23,15 +23,17 @@ class CartPage {
     purchase() {
         this.buttonPurchase.click();
     }
-    findCardInCart(title: string){
-        for(let i = 0; i < this.cards.length; i ++){
-            if(this.cards[i].getTitle() === title)
-            return this.cards[i];
+    @step('Find card in cart by title')
+    findCardInCart(title: string) {
+        for (let i = 0; i < this.cards.length; i++) {
+            if (this.cards[i].getTitle() === title) {
+                return this.cards[i];
+            }
         }
     }
 }
 
-class Card extends BaseCard  {
+class Card extends BaseCard {
     get count() { return this.root.$('[id*=Count]') }
     get decrement() { return this.root.$('[name=btnDec]') }
     get increment() { return this.root.$('[name=btnInc]') }

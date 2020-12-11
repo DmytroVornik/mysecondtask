@@ -9,7 +9,7 @@ const DEFAULT_USER = { login: 'qq', password: '123' }
 describe('main page', () => {
     beforeEach(() => {
         MainPage.open();
-        steps('set preconditions ', () => setPreConditionals(DEFAULT_USER));
+        setPreConditionals(DEFAULT_USER);
     });
 
     it('Add card by title', () => {
