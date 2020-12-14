@@ -1,7 +1,7 @@
 import MainPage, { Menu } from '../pageobjects/main.page'
 import DetailsPage from '../pageobjects/details.page'
 import CartPage from '../pageobjects/cart.page';
-import { accountLogin, addCardToCart, findCardInCart, setPreConditional } from '../utils/functions';
+import { accountLogin, addCardToCart, setPreConditionals } from '../utils/functions';
 import { steps } from "../utils/reports"
 
 const DEFAULT_USER = { login: 'qq', password: '123' }
@@ -9,7 +9,7 @@ const DEFAULT_USER = { login: 'qq', password: '123' }
 describe('main page', () => {
     beforeEach(() => {
         MainPage.open();
-        steps('set preconditions ', () => setPreConditional(DEFAULT_USER));
+        setPreConditionals(DEFAULT_USER);
     });
 
     it('Add card by title', () => {
@@ -21,7 +21,7 @@ describe('main page', () => {
             addCardToCart('Savannah N9 / 51kiloparsecs');
             expect(MainPage.menu.itemsInCart.getText()).toEqual('1');
             MainPage.menu.goToCart();
-            expect(findCardInCart('Savannah N9 / 51kiloparsecs')?.getTitle()).toEqual('Savannah N9 / 51kiloparsecs');
+            expect(CartPage.findCardInCart('Savannah N9 / 51kiloparsecs')?.getTitle()).toEqual('Savannah N9 / 51kiloparsecs');
             browser.takeScreenshot();
         });
     });

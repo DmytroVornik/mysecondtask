@@ -2,6 +2,7 @@ import MainPage from '../pageobjects/main.page';
 import LoginPage from '../pageobjects/login.page';
 import CartPage from '../pageobjects/cart.page';
 import DetailsPage from '../pageobjects/details.page';
+import { steps } from './reports';
 
 export function addCardToCart(property: string | number) {
     if (typeof property === "number") {
@@ -16,14 +17,8 @@ export function addCardToCart(property: string | number) {
     DetailsPage.backToAll();
 }
 
-export function findCardInCart(title: string) {
-    for (let i = 0; i < CartPage.cards.length; i++) {
-        if (CartPage.cards[i].getTitle() === title)
-            return CartPage.cards[i];
-    }
-}
-
-export function setPreConditional(user) {
+export function setPreConditionals(user) {
+    steps('set preconditions ', () => {
     if (!MainPage.menu.aLogIn.isDisplayed() && MainPage.menu.loggedName !== user.loginName) {
         MainPage.menu.logOut();
     }
@@ -37,6 +32,7 @@ export function setPreConditional(user) {
         CartPage.emptyCart();
     }
     MainPage.menu.logOut();
+});
 };
 
 export function accountLogin({ login, password }) {
