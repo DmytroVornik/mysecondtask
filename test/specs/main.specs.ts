@@ -26,7 +26,7 @@ describe('main page', () => {
         });
     });
 
-    it('Add card to cart without login', () => {
+    xit('Add card to cart without login', () => {
         expect(MainPage.menu.loggedName).not.toBeDisplayed();
         steps('Add one card rated 5 to cart', () => {
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
@@ -53,7 +53,7 @@ describe('main page', () => {
         });
     });
 
-    it('Add one card to cart with logged user', () => {
+    xit('Add one card to cart with logged user', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
@@ -72,7 +72,7 @@ describe('main page', () => {
         });
     });
 
-    it('Add three different card to cart with logged user', () => {
+    xit('Add three different card to cart with logged user', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
@@ -90,7 +90,7 @@ describe('main page', () => {
         });
     });
 
-    it('Add three identical cards to cart with logged user', () => {
+    xit('Add three identical cards to cart with logged user', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);

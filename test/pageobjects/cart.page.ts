@@ -1,5 +1,6 @@
 import { step } from "../utils/reports"
 import BaseCard from "./baseCard.page"
+import MainPage from "./main.page"
 
 class CartPage {
     get buttonEmpty() { return $('#btnEmpty') }
@@ -23,7 +24,7 @@ class CartPage {
     purchase() {
         this.buttonPurchase.click();
     }
-    @step('Find card in cart by title')
+    @step('Find card in cart by title {0}')
     findCardInCart(title: string) {
         for (let i = 0; i < this.cards.length; i++) {
             if (this.cards[i].getTitle() === title) {
