@@ -5,7 +5,7 @@ import AllureReporter from "@wdio/allure-reporter";
 
 
 class AddAddressPage extends Page {
-    get listOfAddresses() { return $('#aBack') };
+    get backToAddresses() { return $('#aBack') };
     get street() { return $('#tbStreet') };
     get streetAdditional() { return $('#tbStreetAdditional') };
     get city() { return $('#tbCityName') };
@@ -38,8 +38,14 @@ class AddAddressPage extends Page {
         field.addressNickname === undefined || this.addressNickname.setValue(field.addressNickname);
         this.buttonSaveAdd.click();
     }
-
-
+    @step()
+    goToAddresses() {
+        this.backToAddresses.click();
+    }
+    @step()
+    deleteAddress() {
+        this.buttonDelete.click();
+    }
 }
 type Fields = {
     street: string,

@@ -116,7 +116,7 @@ export class Menu {
         this.buttonItemsInCart.click();
     }
     @step()
-    showAddresses() {
+    goToAddressesPage() {
         this.aAddresses.click();
     }
     @step()
@@ -128,7 +128,7 @@ export class Menu {
         this.aAddCard.click();
     }
     @step()
-    addAddress() {
+    goToAddAddressPage() {
         this.aAddAddress.click();
     }
     @step()

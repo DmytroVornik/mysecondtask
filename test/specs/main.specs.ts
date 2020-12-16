@@ -7,7 +7,7 @@ import AddAddressPage from '../pageobjects/addAddress.page';
 import AddressesPage from '../pageobjects/addresses.page';
 
 const DEFAULT_USER = { login: 'qq', password: '123' }
-const DEFAULT_ADDRESS = {city: 'khr', postalCode: 1388, region: 'khrka', street:'cepobeda'}
+const DEFAULT_ADDRESS = { city: 'khr', postalCode: 1388, region: 'khrka', street: 'cepobeda' }
 
 describe('main page', () => {
     beforeEach(() => {
@@ -18,15 +18,22 @@ describe('main page', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
-        MainPage.menu.aAddAddress.click();
+        MainPage.menu.goToAddressesPage();
+        let addressesBeforeAddingNewAddress = AddressesPage.addresses.length;
+        MainPage.menu.goToAddAddressPage();
         AddAddressPage.addAddress(DEFAULT_ADDRESS);
-        expect(AddAddressPage.message.getText()).toEqual('Created user address ' + AddAddressPage.street.getValue());
-        let address = AddAddressPage.street.getValue();
-        AddAddressPage.listOfAddresses.click();
-        AddressesPage.selectAddress(address);
-        AddAddressPage.buttonDelete.click();
-        browser.fullscreenWindow();
-        browser.takeScreenshot();
+        expect(AddAddressPage.message.getText()).toEqual('Created user address ' + DEFAULT_ADDRESS.street);
+        AddAddressPage.goToAddresses();
+        expect(AddressesPage.addresses.length).toBe(addressesBeforeAddingNewAddress + 1);
+        AddressesPage.selectAddress(DEFAULT_ADDRESS.street);
+        AddAddressPage.deleteAddress();
+        expect(AddAddressPage.message.getText()).toContain('Delete')
+        AddAddressPage.goToAddresses();
+        expect(AddressesPage.addresses.length).toBe(addressesBeforeAddingNewAddress);
+        console.log(AddressesPage.existingAddressByCity(DEFAULT_ADDRESS.city));
+        console.log(AddressesPage.addresses[0].region.getText());
+
+
     });
 
     xit('Add card by title', () => {
