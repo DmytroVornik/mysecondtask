@@ -3,8 +3,7 @@ import DetailsPage from '../pageobjects/details.page'
 import CartPage from '../pageobjects/cart.page';
 import { accountLogin, addCardToCart, setPreConditionals } from '../utils/functions';
 import { steps } from "../utils/reports"
-import AddAddressPage from '../pageobjects/addAddress.page';
-import AddressesPage from '../pageobjects/addresses.page';
+
 
 const DEFAULT_USER = { login: 'qq', password: '123' }
 const DEFAULT_ADDRESS = {city: 'khr', postalCode: 1388, region: 'khrka', street:'cepobeda'}
@@ -14,20 +13,7 @@ describe('main page', () => {
         MainPage.open();
         setPreConditionals(DEFAULT_USER);
     });
-    it('Add address', () => {
-        MainPage.menu.logIn();
-        expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
-        accountLogin(DEFAULT_USER);
-        MainPage.menu.aAddAddress.click();
-        AddAddressPage.addAddress(DEFAULT_ADDRESS);
-        expect(AddAddressPage.message.getText()).toEqual('Created user address ' + AddAddressPage.street.getValue());
-        let address = AddAddressPage.street.getValue();
-        AddAddressPage.listOfAddresses.click();
-        AddressesPage.selectAddress(address);
-        AddAddressPage.buttonDelete.click();
-        browser.fullscreenWindow();
-        browser.takeScreenshot();
-    });
+    
 
     xit('Add card by title', () => {
         MainPage.menu.logIn();
