@@ -3,16 +3,33 @@ import DetailsPage from '../pageobjects/details.page'
 import CartPage from '../pageobjects/cart.page';
 import { accountLogin, addCardToCart, setPreConditionals } from '../utils/functions';
 import { steps } from "../utils/reports"
+import AddAddressPage from '../pageobjects/addAddress.page';
+import AddressesPage from '../pageobjects/addresses.page';
 
 const DEFAULT_USER = { login: 'qq', password: '123' }
+const DEFAULT_ADDRESS = {city: 'khr', postalCode: 1388, region: 'khrka', street:'cepobeda'}
 
 describe('main page', () => {
     beforeEach(() => {
         MainPage.open();
         setPreConditionals(DEFAULT_USER);
     });
+    it('Add address', () => {
+        MainPage.menu.logIn();
+        expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
+        accountLogin(DEFAULT_USER);
+        MainPage.menu.aAddAddress.click();
+        AddAddressPage.addAddress(DEFAULT_ADDRESS);
+        expect(AddAddressPage.message.getText()).toEqual('Created user address ' + AddAddressPage.street.getValue());
+        let address = AddAddressPage.street.getValue();
+        AddAddressPage.listOfAddresses.click();
+        AddressesPage.selectAddress(address);
+        AddAddressPage.buttonDelete.click();
+        browser.fullscreenWindow();
+        browser.takeScreenshot();
+    });
 
-    it('Add card by title', () => {
+    xit('Add card by title', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
@@ -30,7 +47,7 @@ describe('main page', () => {
         expect(MainPage.menu.loggedName).not.toBeDisplayed();
         steps('Add one card rated 5 to cart', () => {
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-                           .pressSearch();
+                .pressSearch();
             expect(MainPage.cards[0].getRating()).toEqual(5);
             MainPage.cards[0].open();
             browser.takeScreenshot();
@@ -41,7 +58,7 @@ describe('main page', () => {
         expect(MainPage.menu.loggedName.getText()).toEqual(DEFAULT_USER.login);
         steps('Add one card rated 5 to cart', () => {
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-                           .pressSearch();
+                .pressSearch();
             expect(MainPage.cards[0].getRating()).toEqual(5);
             MainPage.cards[0].open();
             expect(MainPage.menu.itemsInCart).not.toBeDisplayed();
@@ -60,7 +77,7 @@ describe('main page', () => {
         steps('Add one cards rated 5 to cart', () => {
             expect(MainPage.menu.loggedName).toBeDisplayed();
             MainPage.search.setValuesForSearching({ ratingFrom: 5, ratingTo: 5 })
-                           .pressSearch();
+                .pressSearch();
             expect(MainPage.cards[0].getRating()).toEqual(5);
             MainPage.cards[0].open();
             expect(MainPage.menu.itemsInCart).not.toBeDisplayed();

@@ -26,7 +26,7 @@ export function steps(name: string, func) {
 
 export function createStep(name: string, stepFunc) {
   return function (this, ...args: any[]) {
-    let stepName = name.replace(/(\{(\d+)\})/gi, (m, s, index) => args[index] );
+    let stepName = name.replace(/(\{(\d+)\})/gi, (m, s, index) => m + s + index);
     let status: AllureReporter.StepStatus = 'passed', result;
     AllureReporter.startStep(stepName);
     try {

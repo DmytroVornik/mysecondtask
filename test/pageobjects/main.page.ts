@@ -1,7 +1,7 @@
 import AllureReporter from "@wdio/allure-reporter";
 import Page from "./page"
 import { step } from "../utils/reports"
-import CardPage from "./Card.page";
+import CardPage from "./card.page";
 
 class MainPage extends Page {
     search = new Search('.row');

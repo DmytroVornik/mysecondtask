@@ -1,6 +1,6 @@
 import BaseCard from './baseCard.page';
 import {Menu} from './main.page';
-import CardPage from './Card.page';
+import CardPage from './card.page';
 import { step } from "../utils/reports"
 
 class DetailsPage extends CardPage {
@@ -9,6 +9,7 @@ class DetailsPage extends CardPage {
     constructor() {
         super('.content');
     }
+    menu = new Menu('.container');
 
     @step('Add card to cart')
     addToCart() {

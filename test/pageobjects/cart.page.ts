@@ -1,6 +1,6 @@
 import { step } from "../utils/reports"
 import BaseCard from "./baseCard.page"
-import MainPage from "./main.page"
+import MainPage, { Menu } from "./main.page"
 
 class CartPage {
     get buttonEmpty() { return $('#btnEmpty') }
@@ -12,6 +12,7 @@ class CartPage {
         return $$('.product-card')
             .map(value => new Card('#' + value.getAttribute('id')));
     }
+    menu = new Menu('.container');
 
     getPath(): string {
         return 'common/cart';
