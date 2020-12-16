@@ -1,10 +1,8 @@
-import Page from "./page"
 import { step } from "../utils/reports"
-import AllureReporter from "@wdio/allure-reporter";
+import AllureReporter from "@wdio/allure-reporter"
+import { Menu } from "./main.page"
 
-
-
-class AddAddressPage extends Page {
+class AddAddressPage {
     get backToAddresses() { return $('#aBack') };
     get street() { return $('#tbStreet') };
     get streetAdditional() { return $('#tbStreetAdditional') };
@@ -17,8 +15,32 @@ class AddAddressPage extends Page {
     get buttonDelete() { return $('#btnDelete') };
     get message() { return $('#divMsgOrErr') };
 
+    menu = new Menu('.container')
+
     getPath() {
         return 'common/add_address';
+    }
+    getStreet() {
+        return this.street.getText();
+    }
+    getCity() {
+        return this.city.getText();
+    }
+    getRegion() {
+        return this.region.getText();
+    }
+    getPostalCode() {
+        return this.postalCode.getText();
+    }
+    @step()
+    makeSureTheAddressFieldsAreEmpty() {
+        if (this.getCity() === '' &&
+            this.getPostalCode() === '' &&
+            this.getRegion() === '' &&
+            this.getStreet() === '') {
+            return true;
+        }
+        return false;
     }
     @step()
     addAddress(field: Fields) {
@@ -36,15 +58,23 @@ class AddAddressPage extends Page {
         this.postalCode.waitForClickable();
         this.postalCode.setValue(field.postalCode);
         field.addressNickname === undefined || this.addressNickname.setValue(field.addressNickname);
-        this.buttonSaveAdd.click();
+        this.clickAddSave();
     }
     @step()
     goToAddresses() {
         this.backToAddresses.click();
     }
     @step()
-    deleteAddress() {
+    clickDelete() {
         this.buttonDelete.click();
+    }
+    @step()
+    clickClear() {
+        this.buttonClear.click();
+    }
+    @step()
+    clickAddSave() {
+        this.buttonSaveAdd.click();
     }
 }
 type Fields = {
@@ -52,7 +82,7 @@ type Fields = {
     streetAdditional?: string,
     city: string,
     region: string,
-    postalCode: number,
+    postalCode: string,
     addressNickname?: string
 }
 export default new AddAddressPage()

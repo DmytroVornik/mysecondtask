@@ -7,33 +7,35 @@ import AddAddressPage from '../pageobjects/addAddress.page';
 import AddressesPage from '../pageobjects/addresses.page';
 
 const DEFAULT_USER = { login: 'qq', password: '123' }
-const DEFAULT_ADDRESS = { city: 'khr', postalCode: 1388, region: 'khrka', street: 'cepobeda' }
+const DEFAULT_ADDRESS = { city: 'khr', postalCode: '1388', region: 'khrka', street: 'cepobeda' }
 
 describe('main page', () => {
     beforeEach(() => {
         MainPage.open();
         setPreConditionals(DEFAULT_USER);
     });
+
     it('Add address', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);
         MainPage.menu.goToAddressesPage();
-        let addressesBeforeAddingNewAddress = AddressesPage.addresses.length;
+        let lengthAddressesBeforeAddingNewAddress = AddressesPage.addresses.length;
+        expect(AddressesPage.existingAddress(DEFAULT_ADDRESS)).toBe(false);
         MainPage.menu.goToAddAddressPage();
         AddAddressPage.addAddress(DEFAULT_ADDRESS);
         expect(AddAddressPage.message.getText()).toEqual('Created user address ' + DEFAULT_ADDRESS.street);
         AddAddressPage.goToAddresses();
-        expect(AddressesPage.addresses.length).toBe(addressesBeforeAddingNewAddress + 1);
+        expect(AddressesPage.addresses.length).toBe(lengthAddressesBeforeAddingNewAddress + 1);
+        expect(AddressesPage.existingAddress(DEFAULT_ADDRESS)).toBe(true);
+        console.log(AddressesPage.addresses[1].getCity());
         AddressesPage.selectAddress(DEFAULT_ADDRESS.street);
-        AddAddressPage.deleteAddress();
+        AddAddressPage.clickDelete();
         expect(AddAddressPage.message.getText()).toContain('Delete')
+        expect(AddAddressPage.makeSureTheAddressFieldsAreEmpty()).toBe(true);
         AddAddressPage.goToAddresses();
-        expect(AddressesPage.addresses.length).toBe(addressesBeforeAddingNewAddress);
-        console.log(AddressesPage.existingAddressByCity(DEFAULT_ADDRESS.city));
-        console.log(AddressesPage.addresses[0].region.getText());
-
-
+        expect(AddressesPage.addresses.length).toBe(lengthAddressesBeforeAddingNewAddress);
+        expect(AddressesPage.existingAddress(DEFAULT_ADDRESS)).toBe(false);
     });
 
     xit('Add card by title', () => {
