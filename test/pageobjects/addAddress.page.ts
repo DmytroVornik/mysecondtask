@@ -21,23 +21,23 @@ class AddAddressPage {
         return 'common/add_address';
     }
     getStreet() {
-        return this.street.getText();
+        return this.street.getValue();
     }
     getCity() {
-        return this.city.getText();
+        return this.city.getValue();
     }
     getRegion() {
-        return this.region.getText();
+        return this.region.getValue();
     }
     getPostalCode() {
-        return this.postalCode.getText();
+        return this.postalCode.getValue();
     }
     @step()
-    makeSureTheAddressFieldsAreEmpty() {
-        if (this.getCity() === '' &&
-            this.getPostalCode() === '' &&
-            this.getRegion() === '' &&
-            this.getStreet() === '') {
+    verifyThatFieldValuesAreEqual({ city, postalCode, region, street }) {
+        if (this.getCity() === city &&
+            this.getPostalCode() === postalCode &&
+            this.getRegion() === region &&
+            this.getStreet() === street) {
             return true;
         }
         return false;

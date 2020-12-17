@@ -8,6 +8,7 @@ import AddressesPage from '../pageobjects/addresses.page';
 
 const DEFAULT_USER = { login: 'qq', password: '123' }
 const DEFAULT_ADDRESS = { city: 'khr', postalCode: '1388', region: 'khrka', street: 'cepobeda' }
+const DEFAULT_EMPTY_ADDRESS = { city: '', postalCode: '', region: '', street: '' }
 
 describe('main page', () => {
     beforeEach(() => {
@@ -24,15 +25,16 @@ describe('main page', () => {
         expect(AddressesPage.existingAddress(DEFAULT_ADDRESS)).toBe(false);
         MainPage.menu.goToAddAddressPage();
         AddAddressPage.addAddress(DEFAULT_ADDRESS);
+        expect(AddAddressPage.verifyThatFieldValuesAreEqual(DEFAULT_ADDRESS)).toBe(true);
         expect(AddAddressPage.message.getText()).toEqual('Created user address ' + DEFAULT_ADDRESS.street);
         AddAddressPage.goToAddresses();
         expect(AddressesPage.addresses.length).toBe(lengthAddressesBeforeAddingNewAddress + 1);
         expect(AddressesPage.existingAddress(DEFAULT_ADDRESS)).toBe(true);
-        console.log(AddressesPage.addresses[1].getCity());
         AddressesPage.selectAddress(DEFAULT_ADDRESS.street);
+        expect(AddAddressPage.verifyThatFieldValuesAreEqual(DEFAULT_ADDRESS)).toBe(true);
         AddAddressPage.clickDelete();
         expect(AddAddressPage.message.getText()).toContain('Delete')
-        expect(AddAddressPage.makeSureTheAddressFieldsAreEmpty()).toBe(true);
+        expect(AddAddressPage.verifyThatFieldValuesAreEqual(DEFAULT_EMPTY_ADDRESS)).toBe(true);
         AddAddressPage.goToAddresses();
         expect(AddressesPage.addresses.length).toBe(lengthAddressesBeforeAddingNewAddress);
         expect(AddressesPage.existingAddress(DEFAULT_ADDRESS)).toBe(false);
