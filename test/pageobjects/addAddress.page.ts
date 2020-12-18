@@ -15,13 +15,16 @@ class AddAddressPage {
     get buttonDelete() { return $('#btnDelete') };
     get message() { return $('#divMsgOrErr') };
 
-    menu = new Menu('.container')
+    menu = new Menu('.container');
 
     getPath() {
         return 'common/add_address';
     }
     getStreet() {
         return this.street.getValue();
+    }
+    getStreetAdditional() {
+        return this.streetAdditional.getValue();
     }
     getCity() {
         return this.city.getValue();
@@ -32,22 +35,25 @@ class AddAddressPage {
     getPostalCode() {
         return this.postalCode.getValue();
     }
-    @step()
-    verifyThatFieldValuesAreEqual({ city, postalCode, region, street }) {
-        if (this.getCity() === city &&
-            this.getPostalCode() === postalCode &&
-            this.getRegion() === region &&
-            this.getStreet() === street) {
-            return true;
+    getAddressNickname() {
+        return this.addressNickname.getValue();
+    }
+    getAddress(): Address {
+        return {
+            city: this.getCity(),
+            postalCode: this.getPostalCode(),
+            region: this.getRegion(),
+            street: this.getStreet(),
+            streetAdditional: this.getStreetAdditional(),
+            addressNickname: this.getAddressNickname()
         }
-        return false;
     }
     @step()
-    addAddress(field: Fields) {
+    addAddress(field: Address) {
         AllureReporter.addStep('Enter street');
         this.street.waitForClickable();
         this.street.setValue(field.street);
-        field.streetAdditional === undefined || this.street.setValue(field.streetAdditional);
+        field.streetAdditional === undefined || this.streetAdditional.setValue(field.streetAdditional);
         AllureReporter.addStep('Enter city');
         this.city.waitForClickable();
         this.city.setValue(field.city);
@@ -77,7 +83,7 @@ class AddAddressPage {
         this.buttonSaveAdd.click();
     }
 }
-type Fields = {
+export type Address = {
     street: string,
     streetAdditional?: string,
     city: string,

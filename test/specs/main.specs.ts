@@ -7,8 +7,8 @@ import AddAddressPage from '../pageobjects/addAddress.page';
 import AddressesPage from '../pageobjects/addresses.page';
 
 const DEFAULT_USER = { login: 'qq', password: '123' }
-const DEFAULT_ADDRESS = { city: 'khr', postalCode: '1388', region: 'khrka', street: 'cepobeda' }
-const DEFAULT_EMPTY_ADDRESS = { city: '', postalCode: '', region: '', street: '' }
+const DEFAULT_ADDRESS = { street: 'cepobeda', streetAdditional: 'qwe', city: 'khr', region: 'khrka', postalCode: '1388', addressNickname: 'nickName' }
+const DEFAULT_EMPTY_ADDRESS = { street: '', streetAdditional: '', city: '', region: '', postalCode: '', addressNickname: '' }
 
 describe('main page', () => {
     beforeEach(() => {
@@ -22,22 +22,23 @@ describe('main page', () => {
         accountLogin(DEFAULT_USER);
         MainPage.menu.goToAddressesPage();
         let lengthAddressesBeforeAddingNewAddress = AddressesPage.addresses.length;
-        expect(AddressesPage.existingAddress(DEFAULT_ADDRESS)).toBe(false);
+        expect(AddressesPage.addresses).not.toContain(DEFAULT_ADDRESS);
         MainPage.menu.goToAddAddressPage();
         AddAddressPage.addAddress(DEFAULT_ADDRESS);
-        expect(AddAddressPage.verifyThatFieldValuesAreEqual(DEFAULT_ADDRESS)).toBe(true);
+        browser.takeScreenshot();
+        expect(AddAddressPage.getAddress()).toEqual(DEFAULT_ADDRESS);
         expect(AddAddressPage.message.getText()).toEqual('Created user address ' + DEFAULT_ADDRESS.street);
         AddAddressPage.goToAddresses();
         expect(AddressesPage.addresses.length).toBe(lengthAddressesBeforeAddingNewAddress + 1);
-        expect(AddressesPage.existingAddress(DEFAULT_ADDRESS)).toBe(true);
-        AddressesPage.selectAddress(DEFAULT_ADDRESS.street);
-        expect(AddAddressPage.verifyThatFieldValuesAreEqual(DEFAULT_ADDRESS)).toBe(true);
+        expect(AddressesPage.addresses).toContain(DEFAULT_ADDRESS);
+        AddressesPage.openAddress(DEFAULT_ADDRESS.street);
+        expect(AddAddressPage.getAddress()).toEqual(DEFAULT_ADDRESS);
         AddAddressPage.clickDelete();
         expect(AddAddressPage.message.getText()).toContain('Delete')
-        expect(AddAddressPage.verifyThatFieldValuesAreEqual(DEFAULT_EMPTY_ADDRESS)).toBe(true);
+        expect(AddAddressPage.getAddress()).toEqual(DEFAULT_EMPTY_ADDRESS);
         AddAddressPage.goToAddresses();
         expect(AddressesPage.addresses.length).toBe(lengthAddressesBeforeAddingNewAddress);
-        expect(AddressesPage.existingAddress(DEFAULT_ADDRESS)).toBe(false);
+        expect(AddressesPage.addresses).not.toContain(DEFAULT_ADDRESS);
     });
 
     xit('Add card by title', () => {
