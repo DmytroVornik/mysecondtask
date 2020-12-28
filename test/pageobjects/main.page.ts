@@ -120,11 +120,11 @@ export class Menu {
         this.aAddresses.click();
     }
     @step()
-    showCards() {
+    goToCardsPage() {
         this.aCards.click();
     }
     @step()
-    addCard() {
+    goToAddCardPage() {
         this.aAddCard.click();
     }
     @step()

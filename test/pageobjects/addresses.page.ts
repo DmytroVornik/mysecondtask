@@ -1,6 +1,6 @@
 import { Menu } from "./main.page"
 import { step } from "../utils/reports"
-import { Address } from "./addAddress.page"
+import { Address } from "../utils/addressBuilder"
 
 
 class AddressesPage {

@@ -1,6 +1,7 @@
 import { step } from "../utils/reports"
 import AllureReporter from "@wdio/allure-reporter"
 import { Menu } from "./main.page"
+import { Address } from "test/utils/addressBuilder"
 
 class AddAddressPage {
     get backToAddresses() { return $('#aBack') };
@@ -82,13 +83,5 @@ class AddAddressPage {
     clickAddSave() {
         this.buttonSaveAdd.click();
     }
-}
-export type Address = {
-    street: string,
-    streetAdditional?: string,
-    city: string,
-    region: string,
-    postalCode: string,
-    addressNickname?: string
 }
 export default new AddAddressPage()

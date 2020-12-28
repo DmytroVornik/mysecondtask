@@ -5,10 +5,28 @@ import { accountLogin, addCardToCart, setPreConditionals } from '../utils/functi
 import { steps } from "../utils/reports"
 import AddAddressPage from '../pageobjects/addAddress.page';
 import AddressesPage from '../pageobjects/addresses.page';
+import { Address } from 'test/utils/addressBuilder';
+import { AddressBuilder } from '../utils/addressBuilder';
+import CardsPage from '../pageobjects/cards.page';
+import AddCardPage from '../pageobjects/addCard.page';
+import { Card, CardBuilder } from '../utils/cardBuilder';
 
 const DEFAULT_USER = { login: 'qq', password: '123' }
-const DEFAULT_ADDRESS = { street: 'cepobeda', streetAdditional: 'qwe', city: 'khr', region: 'khrka', postalCode: '1388', addressNickname: 'nickName' }
-const DEFAULT_EMPTY_ADDRESS = { street: '', streetAdditional: '', city: '', region: '', postalCode: '', addressNickname: '' }
+let defaultAddress: Address = new AddressBuilder().build();
+let emptyAddress: Address = new AddressBuilder().withAddressNickname('')
+                                                .withCity('')
+                                                .withPostalCode('')
+                                                .withRegion('')
+                                                .withStreet('')
+                                                .withStreetAdditional('')
+                                                .build();
+let defaultCard: Card = new CardBuilder().build();
+let emptyCard: Card = new CardBuilder().withCode('')
+                                       .withExpirationDate('')
+                                       .withNickName('')
+                                       .withNumber('')
+                                       .withOwner('')
+                                       .build();
 
 describe('main page', () => {
     beforeEach(() => {
@@ -22,23 +40,49 @@ describe('main page', () => {
         accountLogin(DEFAULT_USER);
         MainPage.menu.goToAddressesPage();
         let lengthAddressesBeforeAddingNewAddress = AddressesPage.addresses.length;
-        expect(AddressesPage.addresses).not.toContain(DEFAULT_ADDRESS);
+        expect(AddressesPage.addresses).not.toContain(defaultAddress);
         MainPage.menu.goToAddAddressPage();
-        AddAddressPage.addAddress(DEFAULT_ADDRESS);
+        AddAddressPage.addAddress(defaultAddress);
         browser.takeScreenshot();
-        expect(AddAddressPage.getAddress()).toEqual(DEFAULT_ADDRESS);
-        expect(AddAddressPage.message.getText()).toEqual('Created user address ' + DEFAULT_ADDRESS.street);
+        expect(AddAddressPage.getAddress()).toEqual(defaultAddress);
+        expect(AddAddressPage.message.getText()).toEqual('Created user address ' + defaultAddress.street);
         AddAddressPage.goToAddresses();
         expect(AddressesPage.addresses.length).toBe(lengthAddressesBeforeAddingNewAddress + 1);
-        expect(AddressesPage.addresses).toContain(DEFAULT_ADDRESS);
-        AddressesPage.openAddress(DEFAULT_ADDRESS.street);
-        expect(AddAddressPage.getAddress()).toEqual(DEFAULT_ADDRESS);
+        expect(AddressesPage.addresses).toContain(defaultAddress);
+        AddressesPage.openAddress(defaultAddress.street);
+        expect(AddAddressPage.getAddress()).toEqual(defaultAddress);
         AddAddressPage.clickDelete();
         expect(AddAddressPage.message.getText()).toContain('Delete')
-        expect(AddAddressPage.getAddress()).toEqual(DEFAULT_EMPTY_ADDRESS);
+        expect(AddAddressPage.getAddress()).toEqual(emptyAddress);
         AddAddressPage.goToAddresses();
         expect(AddressesPage.addresses.length).toBe(lengthAddressesBeforeAddingNewAddress);
-        expect(AddressesPage.addresses).not.toContain(DEFAULT_ADDRESS);
+        expect(AddressesPage.addresses).not.toContain(defaultAddress);
+    });
+
+
+    xit('Add card', () => {
+        MainPage.menu.logIn();
+        expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
+        accountLogin(DEFAULT_USER);
+        MainPage.menu.goToCardsPage();
+        let lengthCardsBeforeAddingNewCard = CardsPage.cards.length;
+        expect(CardsPage.cards).not.toContain(defaultCard);
+        MainPage.menu.goToAddCardPage();
+        AddCardPage.addCard(defaultCard);
+        browser.takeScreenshot();
+        expect(AddCardPage.getCard()).toEqual(defaultCard);
+        expect(AddAddressPage.message.getText()).toEqual('Created payment card ' + defaultCard.cardNumber);
+        AddCardPage.goToCards();
+        expect(CardsPage.cards.length).toBe(lengthCardsBeforeAddingNewCard + 1);
+        expect(CardsPage.cards).toContain(defaultCard);
+        CardsPage.openCard(defaultCard.cardNumber);
+        expect(AddCardPage.getCard()).toEqual(defaultCard);
+        AddCardPage.clickDelete();
+        expect(AddCardPage.message.getText()).toContain('Delete')
+        expect(AddCardPage.getCard()).toEqual(emptyCard);
+        AddCardPage.goToCards();
+        expect(CardsPage.cards.length).toBe(lengthCardsBeforeAddingNewCard);
+        expect(CardsPage.cards).not.toContain(defaultCard);
     });
 
     xit('Add card by title', () => {
