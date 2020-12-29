@@ -12,13 +12,8 @@ export class CardBuilder {
     constructor() { }
 
     getEmptyCard() {
-        let copy = this.copy();
-        copy.cardNumber = '';
-        copy.cardCode = '';
-        copy.owner = '';
-        copy.expirationDate = '';
-        copy.nickName = '';
-        return copy;
+        let emptyCard = new Card('','','','','')
+        return emptyCard;
     }
 
     withNumber(cardNumber: string): CardBuilder {

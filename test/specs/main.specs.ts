@@ -14,8 +14,8 @@ import { Card, CardBuilder } from '../utils/cardBuilder';
 const DEFAULT_USER = { login: 'qq', password: '123' }
 const defaultAddress: Address = new AddressBuilder().build();
 const defaultCard: Card = new CardBuilder().build();
-const emptyAddress: Address = new AddressBuilder().getEmptyAddress().build()
-const emptyCard: Card = new CardBuilder().getEmptyCard().build()
+const emptyAddress: Address = new AddressBuilder().getEmptyAddress();
+const emptyCard: Card = new CardBuilder().getEmptyCard();
 
 describe('main page', () => {
     beforeEach(() => {

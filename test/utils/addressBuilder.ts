@@ -17,15 +17,10 @@ export class AddressBuilder {
     private postalCode = '123';
     private addressNickname = 'asda';
     constructor() { }
+
     getEmptyAddress() {
-        let copy = this.copy();
-        copy.street = '';
-        copy.streetAdditional = '';
-        copy.city = '';
-        copy.region = '';
-        copy.postalCode = '';
-        copy.addressNickname = '';
-        return copy;
+        let emptyAddress = new Address('','','','','','')
+        return emptyAddress;
     }
     withStreet(street: string): AddressBuilder {
         let copy = this.copy();
