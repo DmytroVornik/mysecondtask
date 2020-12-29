@@ -10,17 +10,33 @@ export class Address {
     ) { }
 }
 export class AddressBuilder {
-    private street = 'qq';
-    private streetAdditional = 'qwww';
-    private city = 'wqww';
-    private region = 'ww';
-    private postalCode = '123';
-    private addressNickname = 'asda';
+    private street ;
+    private streetAdditional ;
+    private city ;
+    private region ;
+    private postalCode ;
+    private addressNickname ;
     constructor() { }
 
-    getEmptyAddress() {
-        let emptyAddress = new Address('','','','','','')
-        return emptyAddress;
+    static getDefaultAddress() {
+        let newBuilder = new AddressBuilder();
+        newBuilder.street = 'Dirdir';
+        newBuilder.streetAdditional = 'qwerty';
+        newBuilder.city = 'Oz';
+        newBuilder.region = 'Donbass';
+        newBuilder.postalCode = '12345';
+        newBuilder.addressNickname = 'asdfg';
+        return newBuilder;
+    }
+    static getEmptyAddress() {
+        let newBuilder = new AddressBuilder();
+        newBuilder.street = '';
+        newBuilder.streetAdditional = '';
+        newBuilder.city = '';
+        newBuilder.region = '';
+        newBuilder.postalCode = '';
+        newBuilder.addressNickname = '';
+        return newBuilder;
     }
     withStreet(street: string): AddressBuilder {
         let copy = this.copy();

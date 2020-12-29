@@ -11,9 +11,24 @@ export class CardBuilder {
 
     constructor() { }
 
-    getEmptyCard() {
-        let emptyCard = new Card('','','','','')
-        return emptyCard;
+    static getEmptyCard() {
+        let newBuilder = new CardBuilder();
+        newBuilder.cardNumber = '';
+        newBuilder.cardCode = '';
+        newBuilder.owner = '';
+        newBuilder.nickName = '';
+        newBuilder.expirationDate = '';
+        return newBuilder;
+    }
+
+    static getDefaultCard() {
+        let newBuilder = new CardBuilder();
+        newBuilder.cardNumber = '1488148814881488';
+        newBuilder.cardCode = '911';
+        newBuilder.owner = 'Nicolas';
+        newBuilder.nickName = 'Nicolas Dobkin';
+        newBuilder.expirationDate = '2022-11-24';
+        return newBuilder;
     }
 
     withNumber(cardNumber: string): CardBuilder {

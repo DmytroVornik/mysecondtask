@@ -12,10 +12,10 @@ import AddCardPage from '../pageobjects/addCard.page';
 import { Card, CardBuilder } from '../utils/cardBuilder';
 
 const DEFAULT_USER = { login: 'qq', password: '123' }
-const defaultAddress: Address = new AddressBuilder().build();
-const defaultCard: Card = new CardBuilder().build();
-const emptyAddress: Address = new AddressBuilder().getEmptyAddress();
-const emptyCard: Card = new CardBuilder().getEmptyCard();
+const defaultAddress: Address = AddressBuilder.getDefaultAddress().build();
+const defaultCard: Card = CardBuilder.getDefaultCard().build();
+const emptyAddress: Address = AddressBuilder.getEmptyAddress().build();
+const emptyCard: Card = CardBuilder.getEmptyCard().build();
 
 describe('main page', () => {
     beforeEach(() => {
