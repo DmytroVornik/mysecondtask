@@ -1,7 +1,7 @@
 import { step } from "../utils/reports"
 import AllureReporter from "@wdio/allure-reporter"
 import { Menu } from "./main.page"
-import { Card } from "test/utils/cardBuilder"
+import { Card } from "../utils/cardBuilder"
 
 class AddCardPage {
     get backToAddresses() { return $('#aBack') };
@@ -36,13 +36,13 @@ class AddCardPage {
         return this.nickName.getValue();
     }
     getCard(): Card {
-        return {
-            cardNumber: this.getCardNumber(),
-            cardCode: this.getCardCode(),
-            owner: this.getOwner(),
-            expirationDate: this.getExpirationDate(),
-            nickName: this.getNickName(),
-        }
+        return new Card(
+            this.getCardNumber(),
+            this.getCardCode(),
+            this.getOwner(),
+            this.getNickName(),
+            this.getExpirationDate()
+        )
     }
     @step()
     addCard(field: Card) {

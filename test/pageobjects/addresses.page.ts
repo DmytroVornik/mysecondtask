@@ -8,14 +8,14 @@ class AddressesPage {
     get addresses(): Address[] {
         return $$('[id*=trAddress]')
             .map(value => {
-                return {
-                    street: value.$('td:nth-child(2)').getText(),
-                    streetAdditional: value.$('td:nth-child(3)').getText(),
-                    city: value.$('td:nth-child(4)').getText(),
-                    region: value.$('td:nth-child(5)').getText(),
-                    postalCode: value.$('td:nth-child(6)').getText(),
-                    addressNickname: value.$('td:nth-child(7)').getText()
-                }
+                return new Address(
+                    value.$('td:nth-child(2)').getText(),
+                    value.$('td:nth-child(4)').getText(),
+                    value.$('td:nth-child(5)').getText(),
+                    value.$('td:nth-child(6)').getText(),
+                    value.$('td:nth-child(3)').getText(),
+                    value.$('td:nth-child(7)').getText()
+            )
             });
     }
 

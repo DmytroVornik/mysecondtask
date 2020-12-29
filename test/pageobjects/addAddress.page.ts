@@ -1,7 +1,7 @@
 import { step } from "../utils/reports"
 import AllureReporter from "@wdio/allure-reporter"
 import { Menu } from "./main.page"
-import { Address } from "test/utils/addressBuilder"
+import { Address } from "../utils/addressBuilder"
 
 class AddAddressPage {
     get backToAddresses() { return $('#aBack') };
@@ -40,14 +40,12 @@ class AddAddressPage {
         return this.addressNickname.getValue();
     }
     getAddress(): Address {
-        return {
-            city: this.getCity(),
-            postalCode: this.getPostalCode(),
-            region: this.getRegion(),
-            street: this.getStreet(),
-            streetAdditional: this.getStreetAdditional(),
-            addressNickname: this.getAddressNickname()
-        }
+        return new Address(this.getStreet(),
+            this.getCity(),
+            this.getRegion(),
+            this.getPostalCode(),
+            this.getStreetAdditional(),
+            this.getAddressNickname())
     }
     @step()
     addAddress(field: Address) {

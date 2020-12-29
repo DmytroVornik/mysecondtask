@@ -1,19 +1,13 @@
 export class Address {
 
-    street: string;
-    streetAdditional?: string;
-    city: string;
-    region: string;
-    postalCode: string;
-    addressNickname?: string;
-    constructor(street, city, region, postalCode, streetAdditional, addressNickname) {
-        this.street = street;
-        this.streetAdditional = streetAdditional;
-        this.city = city;
-        this.region = region;
-        this.postalCode = postalCode;
-        this.addressNickname = addressNickname;
-    }
+    constructor(
+        public street: string,
+        public city: string,
+        public region: string,
+        public postalCode: string,
+        public streetAdditional?: string,
+        public addressNickname?: string
+    ) { }
 }
 export class AddressBuilder {
     private street = 'qq';
@@ -22,7 +16,16 @@ export class AddressBuilder {
     private region = 'ww';
     private postalCode = '123';
     private addressNickname = 'asda';
-    constructor() {
+    constructor() { }
+    getEmptyAddress() {
+        let copy = this.copy();
+        copy.street = '';
+        copy.streetAdditional = '';
+        copy.city = '';
+        copy.region = '';
+        copy.postalCode = '';
+        copy.addressNickname = '';
+        return copy;
     }
     withStreet(street: string): AddressBuilder {
         let copy = this.copy();
@@ -54,7 +57,7 @@ export class AddressBuilder {
         copy.addressNickname = addressNickname;
         return copy;
     }
-    copy() {
+    copy(): AddressBuilder {
         let newBuilder = new AddressBuilder();
         newBuilder.street = this.street;
         newBuilder.streetAdditional = this.streetAdditional;
@@ -64,7 +67,7 @@ export class AddressBuilder {
         newBuilder.addressNickname = this.addressNickname;
         return newBuilder;
     }
-    build() {
+    build(): Address {
         return new Address(this.street, this.city, this.region, this.postalCode, this.streetAdditional, this.addressNickname);
     }
 }

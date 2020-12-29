@@ -1,27 +1,24 @@
 export class Card {
-    cardNumber: string;
-    cardCode: string;
-    owner: string;
-    expirationDate?: string
-    nickName: string
-
-    constructor(cardNumber, cardCode, owner, nickName, expirationDate) {
-        this.cardNumber = cardNumber;
-        this.cardCode = cardCode;
-        this.owner = owner;
-        this.expirationDate = expirationDate;
-        this.nickName = nickName;
-    }
+    constructor(public cardNumber, public cardCode, public owner, public nickName, public expirationDate) { }
 }
 
 export class CardBuilder {
     private cardNumber: string = '1488148814881488';
     private cardCode: string = '911';
     private owner: string = 'Nicolas';
-    private expirationDate: string = '24.11.2022';
+    private expirationDate: string = '2022-11-24';
     private nickName: string = 'Nicolas Dobkin';
 
-    constructor() {
+    constructor() { }
+
+    getEmptyCard() {
+        let copy = this.copy();
+        copy.cardNumber = '';
+        copy.cardCode = '';
+        copy.owner = '';
+        copy.expirationDate = '';
+        copy.nickName = '';
+        return copy;
     }
 
     withNumber(cardNumber: string): CardBuilder {
@@ -30,28 +27,28 @@ export class CardBuilder {
         return copy;
     }
 
-    withCode(cardCode: string) {
+    withCode(cardCode: string): CardBuilder {
         let copy = this.copy();
         copy.cardCode = cardCode;
         return copy;
     }
-    withOwner(owner: string) {
+    withOwner(owner: string): CardBuilder {
         let copy = this.copy();
         copy.owner = owner;
         return copy;
     }
 
-    withExpirationDate(expirationDate: string) {
+    withExpirationDate(expirationDate: string): CardBuilder {
         let copy = this.copy();
         copy.expirationDate = expirationDate;
         return copy;
     }
-    withNickName(nickName: string) {
+    withNickName(nickName: string): CardBuilder {
         let copy = this.copy();
         copy.nickName = nickName;
         return copy;
     }
-    private copy() {
+    private copy(): CardBuilder {
         let newBuilder = new CardBuilder();
         newBuilder.cardNumber = this.cardNumber;
         newBuilder.cardCode = this.cardCode;

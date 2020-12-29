@@ -12,21 +12,10 @@ import AddCardPage from '../pageobjects/addCard.page';
 import { Card, CardBuilder } from '../utils/cardBuilder';
 
 const DEFAULT_USER = { login: 'qq', password: '123' }
-let defaultAddress: Address = new AddressBuilder().build();
-let emptyAddress: Address = new AddressBuilder().withAddressNickname('')
-                                                .withCity('')
-                                                .withPostalCode('')
-                                                .withRegion('')
-                                                .withStreet('')
-                                                .withStreetAdditional('')
-                                                .build();
-let defaultCard: Card = new CardBuilder().build();
-let emptyCard: Card = new CardBuilder().withCode('')
-                                       .withExpirationDate('')
-                                       .withNickName('')
-                                       .withNumber('')
-                                       .withOwner('')
-                                       .build();
+const defaultAddress: Address = new AddressBuilder().build();
+const defaultCard: Card = new CardBuilder().build();
+const emptyAddress: Address = new AddressBuilder().getEmptyAddress().build()
+const emptyCard: Card = new CardBuilder().getEmptyCard().build()
 
 describe('main page', () => {
     beforeEach(() => {
@@ -60,7 +49,7 @@ describe('main page', () => {
     });
 
 
-    xit('Add card', () => {
+    it('Add card', () => {
         MainPage.menu.logIn();
         expect(browser.getUrl()).toEqual(browser.options.baseUrl + '/login');
         accountLogin(DEFAULT_USER);

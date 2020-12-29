@@ -7,13 +7,14 @@ class CardsPage {
     get cards(): Card[] {
         return $$('[id*=trCard]')
             .map(value => {
-                return {
-                    cardNumber: value.$('td:nth-child(2)').getText(),
-                    cardCode: value.$('td:nth-child(3)').getText(),
-                    owner: value.$('td:nth-child(4)').getText(),
-                    expirationDate: value.$('td:nth-child(5)').getText(),
-                    nickName: value.$('td:nth-child(6)').getText(),
-                }
+                return new Card(
+                    value.$('td:nth-child(2)').getText(),
+                    value.$('td:nth-child(3)').getText(),
+                    value.$('td:nth-child(4)').getText(),
+                    value.$('td:nth-child(6)').getText(),
+                    value.$('td:nth-child(5)').getText()
+
+                )
             });
     }
 
