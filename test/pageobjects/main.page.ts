@@ -116,19 +116,19 @@ export class Menu {
         this.buttonItemsInCart.click();
     }
     @step()
-    showAddresses() {
+    goToAddressesPage() {
         this.aAddresses.click();
     }
     @step()
-    showCards() {
+    goToCardsPage() {
         this.aCards.click();
     }
     @step()
-    addCard() {
+    goToAddCardPage() {
         this.aAddCard.click();
     }
     @step()
-    addAddress() {
+    goToAddAddressPage() {
         this.aAddAddress.click();
     }
     @step()
